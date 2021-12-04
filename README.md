@@ -16,4 +16,4 @@ Project Team:
 
 Resources:
 - Board: https://be-strong.atlassian.net/jira/software/projects/BES/boards/1
-- Report: https://github.com/pedromonteiro01/beStrong/reports/report.pdf
+- Report: https://github.com/pedromonteiro01/beStrong/blob/main/reports/report.pdf
