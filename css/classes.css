@@ -14,3 +14,8 @@
 .card {
     min-height:380px
 }
+
+#includedContent {
+    position: fixed;
+    right: 20px;
+}
