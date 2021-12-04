@@ -32,6 +32,25 @@ html, body,
   letter-spacing: -3px;
 }
 
+.cover-text button {
+  border: none;
+  margin-top: 1rem;
+  background-color: rgb(62, 126, 168);
+  font-size: 22px;
+  color: #fff;
+  padding: .8rem;
+  border-radius: 6px;
+}
+
+.cover-text button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 80, 134);
+}
+
+.cover .lead{
+  font-size: 18px;
+}
+
 .navbar {
     background: linear-gradient(90deg, rgb(50, 80, 134) 0%, rgb(62, 126, 168) 100%);
     height: 80px;
