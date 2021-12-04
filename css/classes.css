@@ -12,10 +12,13 @@
 }
 
 .card {
-    min-height:380px
+    min-height:390px;
 }
 
 #includedContent {
     position: fixed;
     right: 20px;
+}
+#temp {
+    font-size: 15px;
 }
