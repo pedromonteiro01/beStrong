@@ -12,13 +12,22 @@
 }
 
 .card {
-    min-height:390px;
+    min-height:410px;
 }
 
 #includedContent {
     position: fixed;
     right: 20px;
 }
-#temp {
-    font-size: 15px;
+
+.card-body {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+}
+
+.card-body a {
+    margin-left: 25%;
+    width: 50%;
+    margin-right: 25%;
 }
