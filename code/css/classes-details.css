@@ -90,8 +90,13 @@
     font-family: Poppins;
 }
 
-.btn-success {
+.btn-success, .btn-danger {
     width: 50px;
     height: 50px;
     border-radius: 100%;
+}
+
+.btn-danger {
+    padding: 0;
+    font-size: 11px;
 }

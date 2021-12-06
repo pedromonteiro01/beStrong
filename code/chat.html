@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="lab">
-            <div id="wrapper" class="wrapper">
+            <div id="wrapper" class="wrapper" style="display: none;">
                 <section class="chat-area">
                     <header>
                         <img src="img/pt.png" alt="">
@@ -45,11 +45,11 @@
         <script type="text/javascript">
             function myFunction() {
                 var x = document.getElementById("wrapper");
-                if (x.style.opacity == 0) {
-                    x.style.opacity = 1;
+                if (x.style.display == "none") {
+                    x.style.display = "block";
                     x.style.transition = "left 0ms ease-in-out 300ms, bottom 300ms ease-in-out, opacity 300ms ease-in-out"
                 } else {
-                    x.style.opacity = 0;
+                    x.style.display = "none";
                 }
             }
         </script>
