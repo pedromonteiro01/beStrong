@@ -14,8 +14,15 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sign-in.css">
     <title>Sign In</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script> 
+        $(function(){
+          $("#includedContent").load("navbar.html"); 
+        });
+    </script> 
 </head>
 <body>
+    <div id="includedContent"></div>
     <h1 id="title">Monthly Payment</h1>
     <div>
     <div class="main-monthly">

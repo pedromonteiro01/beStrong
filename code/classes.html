@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <title>Group Classes</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/classes.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script> 
         $(function(){
-          $("#includedContent").load("chat.html"); 
+          $("#includedContent2").load("navbar.html"); 
         });
     </script> 
 </head>
 <body>
+    <div class="load-html" id="NavigationMenu" data-source="navbar.html"></div>
       <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -106,6 +107,13 @@
                 </div>
             </div>
       </div>
-      <div id="includedContent"></div>
+      <div class="load-html" id="NavigationMenu" data-source="chat.html"></div>
+      <script>
+          $(function () {
+            $(".load-html").each(function () {
+                $(this).load(this.dataset.source);
+            });
+        });
+      </script>
 </body>
 </html>

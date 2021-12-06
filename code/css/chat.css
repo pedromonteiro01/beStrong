@@ -6,23 +6,14 @@
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
 }
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: #f7f7f7;
-  padding: 0 10px;
-}
-
-.lab {
-  margin-bottom: 19rem; 
-}
 
 .wrapper{
+  position: fixed;
   background-color: #fff;
   max-width: 450px;
-  right: 2rem;
+  top: 3rem;
+  right: 1rem;
+  z-index: 1000;
   width: 100%;
   border-radius: 16px;
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
