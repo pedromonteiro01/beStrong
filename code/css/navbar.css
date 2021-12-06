@@ -178,7 +178,7 @@
     padding: 8px 20px;
     border-radius: 2px;
     outline: none;
-    border: none;
+    border: solid 1px rgb(8, 109, 177);
     cursor: pointer;
 }
 

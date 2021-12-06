@@ -19,11 +19,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script> 
         $(function(){
-          $("#includedContent").load("navbar.html"); 
+          $("#includedContent").load("includes/navbar.html"); 
         });
     </script> 
 </head>
-<body>
+<body id="body">
     <div id="includedContent"></div>
     <div class="sizer">
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -108,24 +108,37 @@
                 <td>09:30</td>
                 <td>10:30</td>
                 <td>17/20</td>
-                <td><button type="button" class="btn btn-success">GO</button></td>
+                <td><button type="button" class="btn btn-success" onclick="myFunction()">GO</button></td>
               </tr>
               <tr>
                 <td>Studio 1</td>
                 <td>12:30</td>
                 <td>13:30</td>
                 <td>19/22</td>
-                <td><button type="button" class="btn btn-success">GO</button></td>
+                <td><button type="button" class="btn btn-success" onclick="myFunction()">GO</button></td>
               </tr>
               <tr>
                 <td>Anf IV</td>   
                 <td>17:30</td>
                 <td>18:30</td>
                 <td>20/35</td>
-                <td><button type="button" class="btn btn-danger">CANCEL</button></td>
+                <td><button type="button" class="btn btn-success" onclick="myFunction()">GO</button></td>
               </tr>
             </tbody>
           </table>
     </div>
+    <script>
+      function myFunction() {
+        alert("Alert...");
+      }
+
+      $('.btn').click(function() {
+          if (this.className == "btn btn-success") {
+            $(this).toggleClass('btn-success').toggleClass('btn-danger').text("CANCEL");
+          } else {
+            $(this).toggleClass('btn-danger').toggleClass('btn-success').text("GO");
+          }
+      });
+    </script>
 </body>
 </html>

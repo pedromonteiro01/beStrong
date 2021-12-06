@@ -8,14 +8,9 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/classes.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script> 
-        $(function(){
-          $("#includedContent2").load("navbar.html"); 
-        });
-    </script> 
 </head>
 <body>
-    <div class="load-html" id="NavigationMenu" data-source="navbar.html"></div>
+    <div class="load-html" id="NavigationMenu" data-source="includes/navbar.html"></div>
       <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -107,7 +102,7 @@
                 </div>
             </div>
       </div>
-      <div class="load-html" id="NavigationMenu" data-source="chat.html"></div>
+      <div class="load-html" id="NavigationMenu" data-source="includes/chat.html"></div>
       <script>
           $(function () {
             $(".load-html").each(function () {
