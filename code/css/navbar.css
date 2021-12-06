@@ -11,9 +11,10 @@
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    position: sticky !important;
+    position: fixed !important;
     top: 0;
     z-index: 999;
+    width: 100%;
 }
   
 #navbar-container {
