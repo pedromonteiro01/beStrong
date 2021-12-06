@@ -149,15 +149,18 @@ button i {
   width: 55px;
   border: none;
   outline: none;
-  background: rgb(65, 133, 179);
+  background-color: rgb(65, 133, 179);
   font-size: 19px;
-  cursor: pointer;
-  pointer-events: none;
   border-radius: 0 5px 5px 0;
   transition: all 0.3s ease;
 }
 
-.typing-area button:active{
+.typing-area button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 80, 134);
+}
+
+.typing-area button.active{
   opacity: 1;
   pointer-events: auto;
 }
