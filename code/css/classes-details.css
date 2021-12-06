@@ -1,3 +1,33 @@
+.sizer {
+    width: 100%;
+    margin-top: 2rem;
+}
+.carousel-item {
+    height: 32rem;
+    background: #000;
+    color: white;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+.overlay-image {
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.8;
+}
+
+.overlay-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 .container {
     margin-top: 3rem;
 }
