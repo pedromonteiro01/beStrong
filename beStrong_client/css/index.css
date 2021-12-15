@@ -134,6 +134,15 @@ html, body,
 }
   
 @media screen and (max-width: 960px) {
+  .cover {
+    margin-top: 5rem;
+    margin-bottom: 0;
+  }
+
+  .cover-text button {
+    margin-bottom: 2rem;
+  }
+
     .NavbarItems {
       position: relative;
   }
@@ -196,7 +205,7 @@ html, body,
     .nav-links-mobile {
       display: block;
       text-align: center;
-      margin: 2rem auto;
+      margin: 2rem 0;
       border-radius: 4px;
       width: 80%;
       text-decoration: none;

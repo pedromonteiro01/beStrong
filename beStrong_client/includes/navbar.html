@@ -10,7 +10,7 @@
     integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
     crossorigin="anonymous"/>
 
-    <link rel="stylesheet" href="code/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet"/>
     <title>Document</title>
     <link rel="stylesheet" href="css/navbar.css">
@@ -25,7 +25,7 @@
           <div id='menu-icon' onclick="myFunction2()">
             <i class="fas fa-bars"></i>
           </div>
-          <ul id='nav-menu' class='active'>
+          <ul id='nav-menu'>
             <li id='nav-item'>
               <a href="index.html" id='nav-links'>
                 Home
@@ -39,7 +39,7 @@
             </li>
     
             <li>
-              <a href='' id='nav-links-mobile'>Sign Up</a>
+              <a href='sign-in.html' id='nav-links-mobile'>Sign Up</a>
             </li>
           </ul>
           <div id="btn-mobile">
@@ -57,11 +57,11 @@
           var x = document.getElementById("nav-menu"); //myDIV = div to toggle
 
               if (x.style.display 
-          === "none") {
-              x.style.display = "block";
+          === "block") {
+              x.style.display = "none";
             } else {
               x.style.display = 
-            "none";
+            "block";
             }
         } 
       </script>

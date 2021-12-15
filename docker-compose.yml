@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: ies-bestrong-db
+    image: mysql:5.7
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: ies-bestrong
+        MYSQL_USER: user
+        MYSQL_PASSWORD: password
+    ports:
+        - "9906:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+        - '8080:80'
+    restart: always
+    environment:
+        PMA_HOST: db
+    depends_on:
+        - db
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "admin"
+    # volumes:
+    #     - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+    #     - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq  
+
+#  server:
+#    build:he “starter” dependenciesfor:→Spring Web, Spring Data JPA, MySQLdriver, DevToolsandValidation.Be sure to complete the following tasks[covered in the tutorial]:c)Create the Employee entity.
+#      context: beStrong_server
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#      - rabbitmq
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/demo
+#      SPRING_DATASOURCE_USERNAME: demo
+#      SPRING_DATASOURCE_PASSWORD: password
+#      SPRING_RABBITMQ_HOST: rabbit
+#    restart: on-failure
+#
+#  sensors:
+#    build:
+#      context: sensing
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - db
+#      - rabbitmq
+#      - server
+#    environment:
+#      RABBITMQ_IP: rabbit
+#      SERVER_IP: backend
+#    restart: on-failure
+#
+#  client:   
+#    build:
+#      context: beStrong_client
+#      dockerfile: Dockerfile
+#    ports: 
+#      - '80:80'
+#    depends_on:
+#      - db
+#      - rabbitmq
+#      - server
+#      - sensors
+#    volumes: 
+#      - ./src:/etc/share/nginx/html
+#    environment:
+#      SERVER_IP: backend

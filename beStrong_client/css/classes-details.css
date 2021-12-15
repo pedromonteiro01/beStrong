@@ -104,3 +104,13 @@
     outline: none;
     box-shadow: none;
   }
+
+  @media screen and (max-width: 960px) {
+    .overlay-image {
+        margin-top: 6rem;
+    } 
+    .overlay-image img { 
+        height: 80vh;
+        
+    }
+  }
