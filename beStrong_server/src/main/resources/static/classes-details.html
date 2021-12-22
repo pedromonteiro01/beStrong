@@ -23,6 +23,7 @@
           $("#includedContent2").load("includes/footer.html"); 
         });
     </script> 
+    <script src="js/classes-details.js"></script>
 </head>
 <body id="body">
     <div id="includedContent"></div>
@@ -93,7 +94,7 @@
     </div> <!-- class container -->
     <div class="container">
         <h1 id="title">Classes in progress</h1>
-        <table class="table">
+        <table id="classes" class="table">
             <thead>
               <tr>
                 <th scope="col">ROOM</th>
@@ -103,7 +104,7 @@
                 <th scope="col"><i class="fas fa-check"> / <i class="fas fa-times"></i></i></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="table_body">
               <tr>
                 <td>Studio 3</td>
                 <td>09:30</td>
