@@ -31,6 +31,9 @@ public class FitnessClass {
     @Column(name = "local", nullable = false)
     private String local;
 
+    @Column(name = "capacity", nullable = false)
+    private int capacity;
+
      //trainer assigned to class
      @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn( referencedColumnName = "id", name="trainer_id", nullable=false)
@@ -108,4 +111,11 @@ public class FitnessClass {
         return this.trainer;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }
