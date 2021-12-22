@@ -8,5 +8,5 @@ import com.beStrong.beStrong_server.model.Trainer;
 @Repository
 public interface TrainerRepository extends JpaRepository<Trainer, Long>{
     Optional<Trainer> findByUsername(String full_name);
-    Optional<Trainer>  findByEmail(String email);
+    Optional<Trainer> findByEmail(String email);
 }

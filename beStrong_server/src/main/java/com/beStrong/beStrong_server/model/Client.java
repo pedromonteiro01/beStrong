@@ -1,13 +1,6 @@
 package com.beStrong.beStrong_server.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,10 +8,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.Set;
+
 
 @Entity
 @Data
-@DiscriminatorValue("Client")
+@Table(name = "Clients")
 public class Client extends User {
 
     @Column(name = "weight")
@@ -28,12 +23,22 @@ public class Client extends User {
     private double height;
 
     //trainer assigned to client
-    @ManyToOne
+    @ManyToOne(targetEntity = Trainer.class)
     @JoinColumn(name = "trainer_id")
     @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Trainer trainer;
+
+    @ManyToMany
+    @JoinTable(
+            name = "fitness_class_reservations",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "fitness_class_id"))
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    Set<FitnessClass> fitnessClasses;
 
     public Client(){
 

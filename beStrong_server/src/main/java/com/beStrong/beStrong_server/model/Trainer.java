@@ -1,15 +1,9 @@
 package com.beStrong.beStrong_server.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import com.beStrong.beStrong_server.model.Class;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,16 +14,15 @@ import lombok.ToString;
 
 @Entity
 @Data
-@DiscriminatorValue("Trainer")
+@Table(name = "Trainer")
 public class Trainer extends User {
 
     // classes assigned to trainer
-    @Column(name = "classes")
-    @ElementCollection(targetClass = Class.class)
-    private Set<Class> classes;
+    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<FitnessClass> fitnessClasses;
 
     //clients assigned to trainer
-    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Client.class)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonIgnore
@@ -40,14 +33,6 @@ public class Trainer extends User {
 
     public Trainer(String email, String username, String password, String phone_number) {
         super(email, username, password, phone_number);
-    }
-
-    public void setClass(Class c){
-        this.classes.add(c);
-    } 
-
-    public void rmClass(Class c){
-        this.classes.remove(c);
     }
 
     public String getEmail() {

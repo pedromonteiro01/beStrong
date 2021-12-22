@@ -15,7 +15,7 @@ import org.springframework.data.domain.Page;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long>{
-    Optional<Client>  findByEmail(String email);
+    Optional<Client> findByEmail(String email);
     Page<Client> findByTrainer(Trainer trainer, Pageable pageable);
     Optional<Client> findByUsername(String full_name);
 }
