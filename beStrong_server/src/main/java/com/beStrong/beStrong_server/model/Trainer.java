@@ -14,7 +14,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-@Table(name = "Trainer")
+@Table(name = "trainers")
 public class Trainer extends User {
 
     // classes assigned to trainer

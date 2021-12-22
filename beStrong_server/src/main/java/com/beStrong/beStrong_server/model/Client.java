@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "Clients")
+@Table(name = "clients")
 public class Client extends User {
 
     @Column(name = "weight")
