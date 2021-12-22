@@ -20,7 +20,7 @@ function show_data(data){
         <td>${cls.local} </td>
         <td>${cls.starting}</td>
         <td>${cls.ending}</td> 
-        <td>${0}</td>
+        <td>${0}/${cls.capacity}</td>
         <td><button type="button" class="btn btn-success" style="border-radius: 100%;"  onclick="myFunction()">GO</button></td>          
         </tr>`;
     }

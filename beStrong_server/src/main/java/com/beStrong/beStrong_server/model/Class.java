@@ -20,6 +20,8 @@ public class Class {
     private Date start_date;
     private Date ending_date; 
     private String local;
+    private int capacity;
+
 
      //trainer assigned to class
      @OneToOne(mappedBy = "class", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -91,4 +93,12 @@ public class Class {
         this.local = local;
     }
 
+    @Column(name = "capacity", nullable = false)
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }
