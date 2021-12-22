@@ -45,7 +45,8 @@ public class Receiver {
                     Date.valueOf(m.get("date").toString()),
                     Time.valueOf(m.get("start").toString()),
                     Time.valueOf(m.get("end").toString()),
-                    m.getOrDefault("local", "Anf. IV").toString()
+                    m.getOrDefault("local", "Anf. IV").toString(),
+                    Integer.parseInt(m.get("capacity").toString())
             );
             fitnessClassRepository.save(fitnessClass);
             // trainer.setClass(fitnessClass);

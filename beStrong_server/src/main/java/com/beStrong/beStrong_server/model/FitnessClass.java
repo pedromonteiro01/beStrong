@@ -46,13 +46,14 @@ public class FitnessClass {
     public FitnessClass() {
     }
 
-    public FitnessClass(Trainer trainer, String type, Date date, Time start_hour, Time ending_hour, String local) {
+    public FitnessClass(Trainer trainer, String type, Date date, Time start_hour, Time ending_hour, String local, int capacity) {
         this.trainer = trainer;
         this.type = type;
         this.date = date;
         this.start_hour = start_hour;
         this.ending_hour = ending_hour;
         this.local = local;
+        this.capacity = capacity;
     }
 
     public int getId() {
