@@ -6,6 +6,7 @@ from random import choice
 from time import sleep
 from model import *
 from queue import MQ
+import mysql.connector
 
 # Odds of random event happening (don't need to be normalized)
 RANDOM_ENTRY = 0.3
@@ -20,6 +21,7 @@ class Generator:
         self.clients = []
         self.trainers = []
         self.fitness_class_names = []
+        self.fitness_class_locations = []
         self.fitness_classes = []
         self.reservations = {}
 
@@ -44,7 +46,7 @@ class Generator:
         max_capacity = random.randint(20, 40)
         name = choice(self.fitness_class_names)
         class_id = max([c.class_id + 1 for c in self.fitness_classes], default=0)
-        print(class_id)
+        local = random.choice(self.fitness_class_locations)
         fitness_class = FitnessClass(
             class_id,
             trainer.user_id,
@@ -52,7 +54,9 @@ class Generator:
             max_capacity,
             date,
             start,
-            end)
+            end,
+            local
+        )
         print('NEW_FITNESS_CLASS: ' + str(fitness_class))
         self.fitness_classes.append(fitness_class)
 
@@ -106,28 +110,58 @@ class Generator:
         return {'header': 'RESERVATION_CANCELLATION', 'user_id': user_id, 'fitness_class': cancellation.class_id}
 
     def setup_variables(self):
-        with open('./static_data/clients.csv', 'r') as f:
-            f.readline()
-            line = f.readline()
-            while line:
-                uid, email, password, phone, username, height, weight, trainer_id = line[:-1].split(',')
+        try:
+            connection = mysql.connector.connect(host='localhost',
+                                                 port='9906',
+                                                 database='ies-bestrong',
+                                                 user='user',
+                                                 password='password')
+
+            sql_select_Query = "select * from clients"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+
+            clients = cursor.fetchall()
+            for uid, email, password, phone, username, height, weight, trainer_id in clients:
                 client = Client(int(uid), username, float(height), float(weight))
                 self.clients.append(client)
-                line = f.readline()
 
-        with open('./static_data/trainers.csv', 'r') as f:
-            f.readline()
-            line = f.readline()
-            while line:
-                uid, email, password, phone, username = line[:-1].split(',')
+            sql_select_Query = "select * from trainers"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+
+            trainers = cursor.fetchall()
+            for uid, email, password, phone, username in trainers:
                 trainer = PersonalTrainer(int(uid), username)
                 self.trainers.append(trainer)
-                line = f.readline()
+
+            sql_select_Query = "select * from fitnessclasses"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+
+            fitness_classes = cursor.fetchall()
+            for fc_id, capacity, date, end, local, start, name, trainer_id in fitness_classes:
+                fitness_class = FitnessClass(fc_id, trainer_id, name, capacity, date, start, end, local)
+                self.fitness_classes.append(fitness_class)
+
+        except mysql.connector.Error as e:
+            print("Error reading data from MySQL table", e)
+        finally:
+            if connection.is_connected():
+                connection.close()
+                cursor.close()
+                print("MySQL connection is closed")
 
         with open('./static_data/fitness_classes_names.txt', 'r') as f:
             line = f.readline()
             while line:
                 self.fitness_class_names.append(line[:-1])
+                line = f.readline()
+
+        with open('./static_data/fitness_classes_locations.txt', 'r') as f:
+            line = f.readline()
+            while line:
+                self.fitness_class_locations.append(line[:-1])
                 line = f.readline()
 
 

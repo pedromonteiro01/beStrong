@@ -39,7 +39,7 @@ class PersonalTrainer(User):
 
 
 class FitnessClass:
-    def __init__(self, class_id, personal_trainer, name, max_capacity, date, start, end, current_size=0):
+    def __init__(self, class_id, personal_trainer, name, max_capacity, date, start, end, local, current_size=0):
         self.class_id = class_id
         self.personal_trainer = personal_trainer
         self.name = name
@@ -48,6 +48,7 @@ class FitnessClass:
         self.date = date
         self.start = start
         self.end = end
+        self.local = local
 
     def __str__(self):
         return str(json.dumps(self.__dict__, default=str))
