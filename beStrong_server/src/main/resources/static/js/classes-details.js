@@ -15,7 +15,9 @@ function show_data(data){
     else
         list = data.list;
     var tab = ``;
-    for (let cls of list) {
+    for (let i = 0; i < data.length; i++) {
+        let cls = data[i];
+        
         tab += `<tr> 
         <td>${cls.local} </td>
         <td>${cls.starting}</td>
@@ -30,6 +32,6 @@ function show_data(data){
 
 
 
-
+console.log("control");
 getData("http://localhost:8081/classes");
 

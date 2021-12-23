@@ -111,10 +111,10 @@ class Generator:
 
     def setup_variables(self):
         try:
-            connection = mysql.connector.connect(host='localhost',
-                                                 port='9906',
+            connection = mysql.connector.connect(host='db',
+                                                 port='3306',
                                                  database='ies-bestrong',
-                                                 user='user',
+                                                 user='root',
                                                  password='password')
 
             sql_select_Query = "select * from clients"
@@ -152,6 +152,7 @@ class Generator:
                 cursor.close()
                 print("MySQL connection is closed")
 
+
         with open('./static_data/fitness_classes_names.txt', 'r') as f:
             line = f.readline()
             while line:
@@ -186,7 +187,7 @@ def main():
         sleep(random.randint(1, 7))
         message = generator.random_event()
         if message is None:
-            continue
+        	continue
         queue.send_msg(json.dumps(message, default=str))
 
 
