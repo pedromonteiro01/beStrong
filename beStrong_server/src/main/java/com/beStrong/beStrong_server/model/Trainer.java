@@ -5,8 +5,11 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -24,6 +27,8 @@ public class Trainer extends User {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+
+    @JsonIgnoreProperties("trainer")
     private Set<FitnessClass> fitnessClasses;
 
     //clients assigned to trainer

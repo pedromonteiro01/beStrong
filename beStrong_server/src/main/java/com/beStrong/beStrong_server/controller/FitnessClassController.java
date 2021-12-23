@@ -18,7 +18,7 @@ import com.beStrong.beStrong_server.repository.*;
 
 @RestController
 @RequestMapping("/classes")
-public class ClassController {
+public class FitnessClassController {
     
     @Autowired
     private ClientRepository clientRepository;
@@ -32,9 +32,7 @@ public class ClassController {
     @GetMapping
     @ResponseBody
     public List<FitnessClass> getAllClasses(HttpServletRequest request) {
-
         Principal principal = request.getUserPrincipal();
-        
         return fitnessClassService.getFitnessClasses();
     }
 }

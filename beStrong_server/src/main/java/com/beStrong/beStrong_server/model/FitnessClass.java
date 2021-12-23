@@ -1,5 +1,7 @@
 package com.beStrong.beStrong_server.model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.sql.Time;
 import java.util.Set;
 
@@ -37,6 +39,7 @@ public class FitnessClass {
      //trainer assigned to class
      @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn( referencedColumnName = "id", name="trainer_id", nullable=false)
+     @JsonIncludeProperties("id")
      private Trainer trainer;
 
      //clients assigned to class

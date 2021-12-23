@@ -15,7 +15,7 @@ import com.beStrong.beStrong_server.model.*;
 import com.beStrong.beStrong_server.repository.*;
 
 @RestController
-@RequestMapping("/trainer")
+@RequestMapping("/trainers")
 public class TrainerController {
     
     @Autowired
@@ -30,6 +30,6 @@ public class TrainerController {
     @GetMapping
     @ResponseBody
     public List<Trainer> getAllTrainers(HttpServletRequest request) {
-            return trainerService.getTrainers();
+        return trainerService.getTrainers();
     }
 }
