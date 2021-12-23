@@ -35,7 +35,7 @@ public class FitnessClass {
     private int capacity;
 
      //trainer assigned to class
-     @ManyToOne(fetch = FetchType.LAZY)
+     @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn( referencedColumnName = "id", name="trainer_id", nullable=false)
      private Trainer trainer;
 

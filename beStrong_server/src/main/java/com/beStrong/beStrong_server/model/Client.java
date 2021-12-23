@@ -30,7 +30,7 @@ public class Client extends User {
     @EqualsAndHashCode.Exclude
     private Trainer trainer;
 
-    @ManyToMany
+    @ManyToMany( fetch = FetchType.EAGER )
     @JoinTable(
             name = "fitness_class_reservations",
             joinColumns = @JoinColumn(name = "client_id"),

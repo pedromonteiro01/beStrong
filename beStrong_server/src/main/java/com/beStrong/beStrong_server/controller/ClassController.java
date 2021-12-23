@@ -6,6 +6,7 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.beStrong.beStrong_server.service.FitnessClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +27,7 @@ public class ClassController {
     private UserRepository userRepository;
 
     @Autowired
-    private FitnessClassRepository fitnessClassRepository;
-
-    public ClassController(ClientRepository clientRepository, UserRepository userRepository, FitnessClassRepository fitnessClassRepository){
-        this.clientRepository = clientRepository;
-        this.userRepository = userRepository;
-        this.fitnessClassRepository = fitnessClassRepository;
-    }
+    private FitnessClassService fitnessClassService;
 
     @GetMapping
     @ResponseBody
@@ -40,6 +35,6 @@ public class ClassController {
 
         Principal principal = request.getUserPrincipal();
         
-        return fitnessClassRepository.findAll();
+        return fitnessClassService.getFitnessClasses();
     }
 }

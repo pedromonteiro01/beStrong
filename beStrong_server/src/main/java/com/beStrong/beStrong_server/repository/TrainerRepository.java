@@ -6,7 +6,8 @@ import java.util.Optional;
 import com.beStrong.beStrong_server.model.Trainer;
 
 @Repository
-public interface TrainerRepository extends JpaRepository<Trainer, Long>{
+public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
+    Optional<Trainer> findById(long id);
     Optional<Trainer> findByUsername(String full_name);
     Optional<Trainer> findByEmail(String email);
 }

@@ -18,11 +18,22 @@ import lombok.ToString;
 public class Trainer extends User {
 
     // classes assigned to trainer
-    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "trainer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Set<FitnessClass> fitnessClasses;
 
     //clients assigned to trainer
-    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Client.class)
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "trainer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            targetEntity = Client.class
+    )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JsonIgnore
