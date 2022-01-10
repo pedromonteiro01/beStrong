@@ -89,11 +89,12 @@
 #menu-icon {
     display: none;
 }
-.modal {
+.modal-title, .modal-body label {
   font-family: Poppins;
 }
 
 .modal-body button {
+  font-family: Poppins;
   width: 30%;
   margin-left: 35%;
   margin-right: 35%;
@@ -108,15 +109,18 @@
 
 .modal-footer p {
   font-weight: normal;
+  font-family: Poppins;
   width: 100%;
   display: block;
 }
 
 .modal-footer a {
   text-decoration: none;
+  font-family: Poppins;
 }
 
 .modal-footer button {
+  font-family: Poppins;
   background-color: white;
   border-radius: 0;
   border: solid 1.5px rgb(50, 80, 134);
