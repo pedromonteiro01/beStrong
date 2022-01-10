@@ -89,6 +89,46 @@
 #menu-icon {
     display: none;
 }
+.modal {
+  font-family: Poppins;
+}
+
+.modal-body button {
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 1rem;
+  border-radius: 0;
+  background-color: rgb(62, 126, 168);
+}
+
+.modal-body button:hover {
+  background-color: rgb(50, 80, 134);
+}
+
+.modal-footer p {
+  font-weight: normal;
+  width: 100%;
+  display: block;
+}
+
+.modal-footer a {
+  text-decoration: none;
+}
+
+.modal-footer button {
+  background-color: white;
+  border-radius: 0;
+  border: solid 1.5px rgb(50, 80, 134);
+  margin-right: 0;
+  width: 5rem;
+  color: black;
+}
+
+.modal-footer button:hover {
+  background-color: rgb(50, 80, 134);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
   
 @media screen and (max-width: 960px) {
     #nav-menu {
