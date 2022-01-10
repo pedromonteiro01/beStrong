@@ -2,10 +2,9 @@ version: "3.9"
 
 services:
   db:
-
-    restart: always
     container_name: ies-bestrong-db
     image: mysql:5.7
+    restart: always
     environment:
         MYSQL_ROOT_PASSWORD: password
         MYSQL_DATABASE: ies-bestrong
@@ -15,6 +14,9 @@ services:
         - "9906:3306"
     volumes:
       - ./db:/var/lib/mysql
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.6
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -25,6 +27,9 @@ services:
         PMA_HOST: db
     depends_on:
         - db
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.7
 #
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -35,6 +40,9 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: "guest"
       RABBITMQ_DEFAULT_PASS: "guest"
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.8
     # volumes:
     #     - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
     #     - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq  
@@ -53,25 +61,30 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: password
       SPRING_RABBITMQ_HOST: rabbitmq
-
     restart: on-failure
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.9
+  
+networks: 
+  my-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
 
-  sensors:
-    build:
-      context: data_generation
-      dockerfile: Dockerfile
-      
-    links:
-      - db
-    depends_on:
-      - db
-      - rabbitmq
-      - server
-    environment:
-      MY_SQL_IP: db
-      RABBITMQ_IP: rabbitmq
-      SERVER_IP: backend
-    restart: on-failure
+#  sensors:
+#    build:
+#      context: sensing
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - db
+#      - rabbitmq
+#      - server
+#    environment:
+#      RABBITMQ_IP: rabbit
+#      SERVER_IP: backend
+#    restart: on-failure
 #
 #  client:   
 #    build:
