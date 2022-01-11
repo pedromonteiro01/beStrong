@@ -33,5 +33,5 @@ function show_data(data){
 
 
 console.log("control");
-getData("http://localhost:8081/classes");
+getData("http://172.18.0.9:8081/classes");
 

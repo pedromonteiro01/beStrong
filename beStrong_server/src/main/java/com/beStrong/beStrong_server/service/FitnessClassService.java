@@ -25,6 +25,10 @@ public class FitnessClassService{
         return fitnessClassRepository.findById(id).orElse(null);
     }
 
+    public List<FitnessClass> getFitnessClassesByType(String type) {
+        return fitnessClassRepository.findByType(type);
+    }
+
     public List<FitnessClass> getFitnessClasses() {
         return fitnessClassRepository.findAll();
     }

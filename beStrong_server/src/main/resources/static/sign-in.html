@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sign-in.css">
     <title>Sign In</title>
+    <script type="text/javascript" src="js/sign-in.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script> 
         $(function(){
@@ -37,7 +38,7 @@
                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                 numquam blanditiis.
             </p>
-            <button type="button" class="button-card">Let's Go</button>
+            <button type="button" class="button-card button-card-1" onclick='document.getElementById("item-price").innerHTML = `<h5><i class="fas fa-check"></i>14.99€ / month</h5>`'>Let's Go</button>
 		</div>
         <div class="monthlyCard">
             <h2>WEEKEND</h2>
@@ -48,7 +49,7 @@
                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                 numquam blanditiis.
             </p>
-            <button type="button" class="button-card">Let's Go</button>
+            <button type="button" class="button-card button-card-2" onclick='document.getElementById("item-price").innerHTML = `<h5><i class="fas fa-check"></i>24.99€ / month</h5>`'>Let's Go</button>
 		</div>
 	</div>
 	<div class="team-wrapper">
@@ -61,7 +62,7 @@
                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                 numquam blanditiis.
             </p>
-            <button type="button" class="button-card">Let's Go</button>
+            <button type="button" class="button-card button-card-3" onclick='document.getElementById("item-price").innerHTML = `<h5><i class="fas fa-check"></i>34.99€ / month</h5>`'>Let's Go</button>
 		</div>
 	</div>
 </div>  
@@ -72,19 +73,19 @@
             <h1>Online Membership</h1>
             <p style="font-size: 18px; margin: 2rem 0;">Fill out the form and choose the plan that best suits your needs.</p>
             <div class="item">
-                <h5><i class="fas fa-check"></i></i>FULL ACCESS</h5>
+                <h5><i class="fas fa-check"></i>FULL ACCESS</h5>
                 <p>With this card you can access all classes and spaces in the club.</p>
             </div>
             <div class="item">
-                <h5><i class="fas fa-check"></i></i>PHYSICAL EVALUATION & TRAINING PLAN</h5>
+                <h5><i class="fas fa-check"></i>PHYSICAL EVALUATION & TRAINING PLAN</h5>
                 <p>You are entitled to a regularly reviewed physical assessment and training plan.</p>
             </div>
             <div class="item">
-                <h5><i class="fas fa-check"></i></i>NUTRITION</h5>
+                <h5><i class="fas fa-check"></i>NUTRITION</h5>
                 <p>The plan includes quarterly appointments and a personalized nutrition plan.</p>
             </div>
-            <div class="item">
-                <h5><i class="fas fa-check"></i></i>14.99€ / month</h5>
+            <div class="item" id="item-price">
+                <h5><i class="fas fa-check"></i>14.99€ / month</h5>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 form-content">
