@@ -1,0 +1,31 @@
+#wrap {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+.icon {
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: green;
+    font-size: 30px;
+    color: black;
+}
+
+.icon:hover {
+    background-color: darkgreen;
+    cursor: pointer;
+}
+
+#bigplus:before {
+    content: '\FF0B';
+    color: white;
+}

@@ -16,6 +16,7 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <title>Class Details</title>
     <link rel="stylesheet" href="css/classes-details.css">
+    <link rel="stylesheet" href="css/trainer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script> 
         $(function(){
@@ -59,6 +60,42 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal 2 -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Class</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="room" class="form-label"><i class="fas fa-users"></i>Room</label>
+            <input type="text" class="form-control" id="input-room">
+
+            <br>
+
+            <label for="capacity" class="form-label"><i class="fas fa-sort-numeric-up"></i>Capacity</label>
+            <input type="number" class="form-control" id="input-room">
+
+            <br>
+
+            <label for="start-date" class="form-label"><i class="fas fa-calendar-alt"></i></i>Start Date</label>
+            <input type="datetime-local" class="form-control" id="input-start-date">
+
+            <br>
+
+            <label for="end-date" class="form-label"><i class="fas fa-calendar-alt"></i></i>End Date</label>
+            <input type="datetime-local" class="form-control" id="input-end-date">
+
+            <br>
+
+            <button type="button" class="btn btn-primary">Add Class</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="includedContent"></div>
     <div class="sizer">
@@ -120,7 +157,6 @@
                             <span><i class="fas fa-temperature-high"></i></i>INTENSITY</span>
                             <h5>medium/high</h5>
                         </div>
-                      <a href="#" class="btn btn-primary">Try for free</a>
                     </div>
                   </div>
             </div>
@@ -163,6 +199,9 @@
             </tbody>
           </table>
     </div>
+    <div id="wrap">
+        <div class="icon" id="bigplus" data-bs-toggle="modal" data-bs-target="#exampleModal2"></div>
+      </div>
     <div id="includedContent2"></div>
     <script>
       function myFunction() {
