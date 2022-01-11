@@ -28,6 +28,10 @@ tbody tr td img:hover {
     cursor: pointer;
 }
 
+tbody tr td img:active {
+    border: none;
+}
+
 tbody tr td button {
     border: none;
     background: none;
