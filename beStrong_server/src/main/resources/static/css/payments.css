@@ -1,0 +1,48 @@
+.table {
+    font-family: Poppins;
+}
+
+.container-out {
+    margin-top: 8rem;
+}
+
+.container .row img {
+    width: 170px;
+    height: auto;
+}
+
+.container .row h3 {
+    margin-top: 2rem;
+}
+
+.container-header {
+    margin-bottom: 4rem;
+}
+
+tbody tr td img {
+    width: 50px;
+    height: auto;
+}
+
+tbody tr td img:hover {
+    cursor: pointer;
+}
+
+tbody tr td button {
+    border: none;
+    background: none;
+}
+
+.modal-body .container-inside img {
+    width: 80px;
+    height: auto;
+}
+.container-header h3,
+.container-header h5 {
+    font-family: Poppins;
+}
+
+.modal-body h5 {
+    font-family: Poppins;
+    font-size: 19px;
+}
