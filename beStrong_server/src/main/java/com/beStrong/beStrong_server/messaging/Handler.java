@@ -4,6 +4,8 @@ import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.model.Trainer;
 import com.beStrong.beStrong_server.service.FitnessClassService;
 import com.beStrong.beStrong_server.service.TrainerService;
+
+import org.hibernate.id.IntegralDataTypeHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -39,7 +41,8 @@ public class Handler{
                 Time.valueOf(message.get("start").toString()),
                 Time.valueOf(message.get("end").toString()),
                 message.getOrDefault("local", "Anf. IV").toString(),
-                Integer.parseInt(message.getOrDefault("max_capacity", 30).toString())
+                Integer.parseInt(message.getOrDefault("max_capacity", 30).toString()),
+                Integer.parseInt(message.getOrDefault("current_capacity", 0).toString())
         );
         fitnessClassService.saveFitnessClass(fitnessClass);
     };

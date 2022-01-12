@@ -86,6 +86,13 @@ transform: rotate(25deg);
   display: none;
 }
 
+#span-user {
+  color: #fff;
+  margin-left: 0.5rem;
+  font-size: 16px;
+  float: right;
+}
+
 #menu-icon {
   display: none;
 }

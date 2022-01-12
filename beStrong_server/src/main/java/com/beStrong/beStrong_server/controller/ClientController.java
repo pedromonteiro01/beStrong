@@ -10,31 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.beStrong.beStrong_server.model.FitnessClass;
+import com.beStrong.beStrong_server.model.Client;
+import com.beStrong.beStrong_server.service.ClientService;
 import com.beStrong.beStrong_server.repository.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/clients")
 public class ClientController {
-    
-    @Autowired
-    private ClientRepository clientRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private FitnessClassRepository fitnessClassRepository;
-
-    public ClientController(ClientRepository clientRepository, UserRepository userRepository, FitnessClassRepository fitnessClassRepository){
-        this.clientRepository = clientRepository;
-        this.userRepository = userRepository;
-        this.fitnessClassRepository = fitnessClassRepository;
-    }
+    private ClientService clientService;
 
     @GetMapping
     @ResponseBody
-    public List<FitnessClass> getAllClasses(HttpServletRequest request) {
-            return fitnessClassRepository.findAll();
+    public List<Client> getAllClients(HttpServletRequest request) {
+        return clientService.getClients();
     }
 }

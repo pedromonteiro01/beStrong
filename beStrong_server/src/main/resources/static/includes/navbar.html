@@ -17,10 +17,25 @@
 
     <title>Document</title>
     <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/login.js"></script>
+    <script>
+      var log = localStorage.getItem("loggedIn");
+      if (log==1){
+        document.getElementById("btn").style.display = "none";
+        document.getElementById("btn-log").style.display = "block";
+        var user = localStorage.getItem("Username");
+        let str = "Logged in as: ";
+        document.getElementById("span-user").innerHTML = str.concat(user);
+      }
+      else{
+        document.getElementById("btn").style.display = "block";
+        document.getElementById("btn-log").style.display = "none";
+      }
+    </script>
 </head>
 <body>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -36,7 +51,7 @@
             <label for="password" class="form-label"><i class="fas fa-lock"></i>Password</label>
             <input type="password" class="form-control" id="input-password">
 
-            <button type="button" class="btn btn-primary">Sign In</button>
+            <button type="button" class="btn btn-primary" onclick="login()">Sign In</button>
 
           </div>
           <div class="modal-footer">
@@ -63,7 +78,7 @@
               </a>
             </li>
             <li id='nav-item'>
-              <a href=''id='nav-links'>Payments</a>
+              <a href='payments.html'id='nav-links'>Payments</a>
             </li>
             <li id='nav-item'>
               <a href='classes.html'id='nav-links'>Classes</a>
@@ -74,8 +89,12 @@
             </li>
           </ul>
           <div id="btn-mobile">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn" class="btn--medium btn--outline">SIGN IN</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="btn" class="btn--medium btn--outline">SIGN IN</button>
+            <button type="button" id="btn-log" class="btn--medium btn--outline" style="display: none; font-family: 'PT Sans', sans-serif;" onclick="logout()">LOGOUT</button>
           </div>
+        </div>
+        <div id="div-span">
+          <span id="span-user"></span>
         </div>
       </nav>
       <script>
@@ -95,6 +114,15 @@
             "block";
             }
         } 
+
+        function logout(){
+          if(window.confirm("Do you want to Logout?")){
+            localStorage.setItem("loggedIn", 0);
+            localStorage.removeItem("Username");
+            localStorage.removeItem("Password");
+            window.location.href = "index.html";
+          }
+        }
       </script>
 </body>
 </html>

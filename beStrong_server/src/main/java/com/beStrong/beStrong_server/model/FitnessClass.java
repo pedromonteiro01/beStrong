@@ -33,8 +33,11 @@ public class FitnessClass {
     @Column(name = "local", nullable = false)
     private String local;
 
-    @Column(name = "capacity", nullable = false)
-    private int capacity;
+    @Column(name = "max_capacity", nullable = false)
+    private int max_capacity;
+
+    @Column(name = "current_capacity", nullable = false)
+    private int current_capacity;
 
      //trainer assigned to class
      @ManyToOne(fetch = FetchType.EAGER)
@@ -49,14 +52,15 @@ public class FitnessClass {
     public FitnessClass() {
     }
 
-    public FitnessClass(Trainer trainer, String type, Date date, Time start_hour, Time ending_hour, String local, int capacity) {
+    public FitnessClass(Trainer trainer, String type, Date date, Time start_hour, Time ending_hour, String local, int max_capacity, int current_capacity) {
         this.trainer = trainer;
         this.type = type;
         this.date = date;
         this.start_hour = start_hour;
         this.ending_hour = ending_hour;
         this.local = local;
-        this.capacity = capacity;
+        this.max_capacity = max_capacity;
+        this.current_capacity = current_capacity;
     }
 
     public int getId() {
@@ -115,11 +119,19 @@ public class FitnessClass {
         return this.trainer;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getMaxCapacity() {
+        return max_capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setMaxCapacity(int capacity) {
+        this.max_capacity = capacity;
+    }
+
+    public int getCurrentCapacity() {
+        return current_capacity;
+    }
+
+    public void setCurrentCapacity(int capacity) {
+        this.current_capacity = capacity;
     }
 }
