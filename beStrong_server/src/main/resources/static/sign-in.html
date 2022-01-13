@@ -90,58 +90,59 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-6 form-content">
-            <form>
-                <div class="card" style="width: 100%;">
-                    <div class="card-body">
-                        <h3>Your Information</h3>
-                        <div class="container">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h3>Your Information</h3>
+                    <div class="container">
+                        <div class="row">
                             <div class="row">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>            
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <label for="exampleInputPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <label for="name" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" id="input-name">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="input-username">
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="phone" class="form-label">Phone</label>
-                                    <input type="tel" class="form-control" id="input-phone">
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>            
                                 </div>
                             </div>
-                            <div class="row" id="lastRow">
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="weight" class="form-label">Weight (Kg)</label>
-                                    <input type="number" class="form-control" id="input-weight" step="0.1">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="exampleInputPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword">
                                 </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="height" class="form-label">Height (cm)</label>
-                                    <input type="number" class="form-control" id="input-height" step="0.1">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="input-name">
                                 </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="input-username">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="input-phone">
                             </div>
                         </div>
-                          <div id="secure">
-                            <span style="margin-right: 1rem;"><i class="fas fa-lock"></i> SAFE CHECKOUT</span>
-                            <span><i class="fas fa-check-circle"></i> ALWAYS AVAILABLE</span>
+                        <div class="row" id="lastRow">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="weight" class="form-label">Weight (Kg)</label>
+                                <input type="number" class="form-control" id="input-weight" step="0.1">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="height" class="form-label">Height (cm)</label>
+                                <input type="number" class="form-control" id="input-height" step="0.1">
+                            </div>
                         </div>
                     </div>
-                  </div>
-            </form>
+                        <div id="secure">
+                        <span style="margin-right: 1rem;"><i class="fas fa-lock"></i> SAFE CHECKOUT</span>
+                        <span><i class="fas fa-check-circle"></i> ALWAYS AVAILABLE</span>
+                    </div>
+                    <div class="sign-up-btn">
+                        <button class="btn btn-primary" onclick="signUp()">SIGN UP</button>
+                    </div>
+                </div>
+                </div>
         </div>
     </div>
 </div>

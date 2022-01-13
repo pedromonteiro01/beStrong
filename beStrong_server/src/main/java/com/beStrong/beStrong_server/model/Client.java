@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -31,8 +30,15 @@ public class Client extends User {
     @EqualsAndHashCode.Exclude
     private Trainer trainer;
 
-    @ManyToMany( mappedBy = "clients")
-    Set<FitnessClass> fitnessClasses = new HashSet<>();
+    @ManyToMany( fetch = FetchType.EAGER )
+    @JoinTable(
+            name = "fitness_class_reservations",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "fitness_class_id"))
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    Set<FitnessClass> fitnessClasses;
 
     public Client(){
 
@@ -56,6 +62,26 @@ public class Client extends User {
         return this.height;
     }
 
+    public String getEmail(){
+        return super.getEmail();
+    }
+
+    public String getPassword(){
+        return super.getPassword();
+    }
+
+    public String getPhone(){
+        return super.getPhone();
+    }
+
+    public int getId(){
+        return super.getId();
+    }
+
+    public void setId(int id){
+        super.setId(id);
+    }
+
     public void setHeight(Double height){
         this.height=height;
     } 
@@ -67,17 +93,4 @@ public class Client extends User {
     public Trainer getTrainer(){
         return this.trainer;
     }
-
-    public Set<FitnessClass> getFitnessClasses() {
-        return fitnessClasses;
-    }
-
-    public void setFitnessClasses(Set<FitnessClass> fitnessClasses) {
-        this.fitnessClasses = fitnessClasses;
-    }
-
-    public void addReservation(FitnessClass fitnessClass) {
-        this.fitnessClasses.add(fitnessClass);
-    }
 }
-

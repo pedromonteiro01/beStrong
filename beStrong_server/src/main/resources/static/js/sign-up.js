@@ -1,47 +1,35 @@
-async function getData(url1, user, pw){
-    const response1 = await fetch(url1);
-    var data1 = await response1.json();
-    console.log(data1);
-    
-    verify_login(data1, user, pw);
+async function sendData(url, email1, password1, user1, phone1, weight1, height1){
+    const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email: email1, password: password1, phone: phone1, weight: weight1, height: height1, name: user1}),
+    });
+    console.log(response);
+
+    response.json().then(data => {
+    console.log(data);
+    });
 }
 
-function login(){
+function signUp(){
     console.log("control");
-    var username=document.getElementById("input-email").value;
-    var password=document.getElementById("input-password").value;
+    var email=document.getElementById("exampleInputEmail1").value;
+    var password=document.getElementById("exampleInputPassword").value;
+    var phone = document.getElementById("input-phone").value;
+    var weight = document.getElementById("input-weight").value;
+    var height = document.getElementById("input-height").value;
+    var user = document.getElementById("input-username").value;
 
-    if(username=="" || password==""){
+
+
+    if(email=="" || password=="" || phone=="" || user=="" || weight=="" || height==""){
         alert("You need to fill all fields!");
-        return;
+        return; 
     }
 
-    console.log("user: ", username);
-    console.log("pass: ", password);
+    sendData("http://172.18.0.9:8081/clients", email, password, user, phone, weight, height);
 
-    getData("http://172.18.0.9:8081/clients", username, password);
-
-}
-
-function verify_login(data, user, pw){
-    var list;
-    if (data.length <= 1)
-        list = data;
-    else
-        list = data.list;
-    for (let i = 0; i < data.length; i++) {
-        let cls = data[i];
-        if (cls.email == user && cls.password==pw){
-            console.log("user:",cls.email);
-            localStorage.setItem("loggedIn", 1);
-            localStorage.setItem("Email", cls.email);
-            localStorage.setItem("Username", cls.name);
-            localStorage.setItem("Phonenumber", cls.phone);
-            localStorage.setItem("Password", pw);
-            window.location.href="index.html";
-            return;
-        }
-    }
-    alert("Wrong credentials!");
-    return;
 }
