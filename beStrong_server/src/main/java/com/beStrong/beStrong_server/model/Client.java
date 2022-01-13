@@ -93,4 +93,8 @@ public class Client extends User {
     public Trainer getTrainer(){
         return this.trainer;
     }
+
+    public void addReservation(FitnessClass fitnessClass) {
+        this.fitnessClasses.add(fitnessClass);
+    }
 }
