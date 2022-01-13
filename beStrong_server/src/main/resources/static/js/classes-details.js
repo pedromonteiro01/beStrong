@@ -44,7 +44,7 @@ function change_doc(data){
                 if (i==0){
                     images+=`
                     <div class="carousel-item active">
-                        <div class="overlay-image">
+                        <div class="overlay-image img-fluid">
                             <img src="${imagesArray[i]}" alt="">
                         </div>
                     </div>
@@ -53,7 +53,7 @@ function change_doc(data){
                 else{
                     images+=`
                         <div class="carousel-item">
-                            <div class="overlay-image">
+                            <div class="overlay-image img-fluid">
                                 <img src="${imagesArray[i]}" alt="">
                             </div>
                         </div>
