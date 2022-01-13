@@ -22,6 +22,17 @@
           $("#includedContent").load("includes/navbar.html"); 
         });
     </script> 
+    <script>
+        window.onload = function(){
+            var log = localStorage.getItem("loggedIn");
+            if (log==1){
+                console.log(localStorage.getItem("Username"));
+                document.getElementById("fullname").innerHTML = localStorage.getItem("Username");
+                document.getElementById("fullemail").innerHTML = localStorage.getItem("Email");
+                document.getElementById("fullnumber").innerHTML = localStorage.getItem("Phonenumber");
+            }
+        }
+    </script>
 </head>
 <body id="body">
     <!-- Modal -->
@@ -67,9 +78,9 @@
                     <img class="rounded-circle img-fluid" src="https://photografos.com.br/wp-content/uploads/2020/09/fotografia-para-perfil.jpg" alt="">
                 </div>
                 <div class="col-sm-12 col-md-10">
-                    <h3>Pedro Monteiro</h3>
-                    <h5>pmapm@ua.pt</h5>
-                    <h5>9696969969</h5>
+                    <h3 id="fullname"></h3>
+                    <h5 id="fullemail"></h5>
+                    <h5 id="fullnumber"></h5>
                 </div>
             </div>
         </div>

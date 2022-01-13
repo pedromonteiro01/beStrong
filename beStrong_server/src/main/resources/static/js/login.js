@@ -34,7 +34,9 @@ function verify_login(data, user, pw){
         if (cls.email == user && cls.password==pw){
             console.log("user:",cls.email);
             localStorage.setItem("loggedIn", 1);
+            localStorage.setItem("Email", cls.email);
             localStorage.setItem("Username", cls.name);
+            localStorage.setItem("Phonenumber", cls.phone);
             localStorage.setItem("Password", pw);
             window.location.href="index.html";
             return;
