@@ -1,8 +1,11 @@
 package com.beStrong.beStrong_server.model;
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.sql.Time;
+import java.util.HashSet;
 import java.util.Set;
 
 import java.sql.Date;
@@ -36,9 +39,6 @@ public class FitnessClass {
     @Column(name = "max_capacity", nullable = false)
     private int max_capacity;
 
-    @Column(name = "current_capacity", nullable = false)
-    private int current_capacity;
-
      //trainer assigned to class
      @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn( referencedColumnName = "id", name="trainer_id", nullable=false)
@@ -46,13 +46,21 @@ public class FitnessClass {
      private Trainer trainer;
 
      //clients assigned to class
-     @ManyToMany(mappedBy = "fitnessClasses")
-     private Set<Client> clients;
+     @ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+     @JoinTable(
+             name = "fitness_class_reservations",
+             joinColumns = @JoinColumn(name = "fitness_class_id", referencedColumnName = "id"),
+             inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id")
+     )
+     @ToString.Exclude
+     @EqualsAndHashCode.Exclude
+     @JsonIgnore
+     private Set<Client> clients = new HashSet<>();
 
     public FitnessClass() {
     }
 
-    public FitnessClass(Trainer trainer, String type, Date date, Time start_hour, Time ending_hour, String local, int max_capacity, int current_capacity) {
+    public FitnessClass(Trainer trainer, String type, Date date, Time start_hour, Time ending_hour, String local, int max_capacity) {
         this.trainer = trainer;
         this.type = type;
         this.date = date;
@@ -60,7 +68,6 @@ public class FitnessClass {
         this.ending_hour = ending_hour;
         this.local = local;
         this.max_capacity = max_capacity;
-        this.current_capacity = current_capacity;
     }
 
     public int getId() {
@@ -128,10 +135,18 @@ public class FitnessClass {
     }
 
     public int getCurrentCapacity() {
-        return current_capacity;
+        return clients.size();
     }
 
-    public void setCurrentCapacity(int capacity) {
-        this.current_capacity = capacity;
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
+    }
+
+    public void addClient(Client client) {
+        this.clients.add(client);
     }
 }

@@ -33,9 +33,7 @@ public class Receiver {
 
         System.out.println("Received <" + m + ">");
 
-        if (m.get("header").equals("NEW_FITNESS_CLASS")) {
-            this.handler.handle(m);
-        }
+        this.handler.handle(m);
 
         latch.countDown();
     }

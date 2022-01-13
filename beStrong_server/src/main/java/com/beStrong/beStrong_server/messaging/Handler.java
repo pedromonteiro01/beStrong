@@ -1,7 +1,9 @@
 package com.beStrong.beStrong_server.messaging;
 
+import com.beStrong.beStrong_server.model.Client;
 import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.model.Trainer;
+import com.beStrong.beStrong_server.service.ClientService;
 import com.beStrong.beStrong_server.service.FitnessClassService;
 import com.beStrong.beStrong_server.service.TrainerService;
 
@@ -21,29 +23,49 @@ public class Handler{
     private FitnessClassService fitnessClassService;
     @Autowired
     private TrainerService trainerService;
+    @Autowired
+    private ClientService clientService;
 
     @Async
-    public void handle(Map<String, Object> message) {
+    public String handle(Map<String, Object> message) {
+        String ret;
+        FitnessClass fitnessClass;
+        Client client;
+        Trainer trainer;
 
-        if (!message.get("header").equals("NEW_FITNESS_CLASS"))
-            return;
+        switch(message.get("header").toString()) {
+            case "NEW_FITNESS_CLASS":
+                trainer =
+                        this.trainerService.getTrainerById(Integer.parseInt(message.get("personal_trainer").toString()));
 
-        System.out.println(this.trainerService);
-        Trainer trainer =
-                this.trainerService.getTrainerById(Integer.parseInt(message.get("personal_trainer").toString()));
-        if (trainer == null)
-            return;
+                if (trainer == null) {
+                    ret = "Trainer " + message.get("personal_trainer").toString() + " not found";
+                    break;
+                }
 
-        FitnessClass fitnessClass = new FitnessClass(
-                trainer,
-                message.getOrDefault("name", "Yoga").toString(),
-                Date.valueOf(message.get("date").toString()),
-                Time.valueOf(message.get("start").toString()),
-                Time.valueOf(message.get("end").toString()),
-                message.getOrDefault("local", "Anf. IV").toString(),
-                Integer.parseInt(message.getOrDefault("max_capacity", 30).toString()),
-                Integer.parseInt(message.getOrDefault("current_capacity", 0).toString())
-        );
-        fitnessClassService.saveFitnessClass(fitnessClass);
+                fitnessClass = new FitnessClass(
+                        trainer,
+                        message.getOrDefault("name", "Yoga").toString(),
+                        Date.valueOf(message.get("date").toString()),
+                        Time.valueOf(message.get("start").toString()),
+                        Time.valueOf(message.get("end").toString()),
+                        message.getOrDefault("local", "Anf. IV").toString(),
+                        Integer.parseInt(message.getOrDefault("max_capacity", 30).toString())
+                );
+                fitnessClassService.saveFitnessClass(fitnessClass);
+                ret = "New fitness class added " + fitnessClass;
+                break;
+
+            case "RESERVATION":
+                ret = fitnessClassService.makeReservation(
+                        Integer.parseInt(message.get("fitness_class").toString()),
+                        Integer.parseInt(message.get("user_id").toString())
+                );
+                break;
+
+            default:
+                ret = "Unknown header " + message.get("header").toString();
+        }
+        return ret;
     };
 }
