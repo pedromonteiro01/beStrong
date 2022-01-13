@@ -88,13 +88,13 @@
                             <span><i class="fas fa-temperature-high"></i></i>INTENSITY</span>
                             <h5 id="intensity">medium/high</h5>
                         </div>
-                      <a href="#" class="btn btn-primary">Try for free</a>
+                      <a class="btn btn-primary" onclick="check()">Try for free</a>
                     </div>
                   </div>
             </div>
         </div> <!-- class row -->
     </div> <!-- class container -->
-    <div class="container">
+    <div class="container" id="classes-table">
         <h1 id="title">Classes in progress</h1>
         <table id="classes" class="table">
             <thead>
@@ -135,6 +135,15 @@
     <script>
       function myFunction() {
         alert("Alert...");
+      }
+
+      function check(){
+        if (localStorage.getItem("loggedIn")!=1){
+          window.location.href = "sign-in.html";
+        }
+        else{
+          window.location.href = "#classes-table";
+        }
       }
     </script>
 </body>
