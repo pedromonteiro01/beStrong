@@ -78,7 +78,7 @@
               </a>
             </li>
             <li id='nav-item'>
-              <a href='payments.html'id='nav-links'>Payments</a>
+              <a onclick="redirectToPayments()" id='nav-links'>Payments</a>
             </li>
             <li id='nav-item'>
               <a href='classes.html'id='nav-links'>Classes</a>
@@ -120,9 +120,19 @@
             localStorage.setItem("loggedIn", 0);
             localStorage.removeItem("Username");
             localStorage.removeItem("Password");
+            localStorage.removeItem("Phonenumber");
             window.location.href = "index.html";
           }
         }
+
+        function redirectToPayments(){
+            var log = localStorage.getItem("loggedIn");
+            if (log==1){
+              window.location.href = "payments.html";
+            } else {
+              window.alert("You must be logged in to access payments!");
+            }
+          }
       </script>
 </body>
 </html>

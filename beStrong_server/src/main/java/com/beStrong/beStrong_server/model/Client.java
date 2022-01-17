@@ -74,11 +74,11 @@ public class Client extends User {
         return super.getPhone();
     }
 
-    public int getId(){
+    public Integer getId(){
         return super.getId();
     }
 
-    public void setId(int id){
+    public void setId(Integer id){
         super.setId(id);
     }
 
