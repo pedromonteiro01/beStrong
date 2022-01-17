@@ -33,9 +33,6 @@ public class ClientController {
     @Autowired
     private TrainerService trainerService;
 
-    @Autowired
-    private ClientRepository clientRepository;
-
     @GetMapping
     @ResponseBody
     public List<Client> getAllClients(HttpServletRequest request) {
@@ -44,33 +41,14 @@ public class ClientController {
 
     @PostMapping
     public Client createClient(@Valid @RequestBody Client client, HttpServletRequest request) throws UnprocessableEntityException, Exception{
-        try{
-            Optional<Client> u1 = clientRepository.findByEmail(client.getEmail());
-            Optional<Client> u2 = clientRepository.findByUsername(client.getName());
-            if(u2.isPresent()){
-                throw new UnprocessableEntityException("Username already exists");
-            }
-            else if(u1.isPresent()){
-                throw new UnprocessableEntityException("Email already exists");
-            }
-            client.setPassword(client.getPassword());
-            List<Client> lst = clientService.getClients();
-            client.setId(lst.get(lst.size()-1).getId()+1);
-            while (true){
-                try{
-                    clientService.saveClient(client);
-                    break;
-                }
-                catch (Exception e){
-                    client.setId(client.getId()+1);
-                }
-            }
-            System.out.println("final " + client.getId());
-            return client;
+        Client comp = clientService.findClientByEmail(client.getEmail());
+        if (comp != null) {
+            throw new UnprocessableEntityException("Email already exists");
         }
-        catch (Exception e) {
-            throw e;
+        comp = clientService.findClientByUsername(client.getName());
+        if (comp != null) {
+            throw new UnprocessableEntityException("Username already exists");
         }
-        
+        return clientService.saveClient(client);
     }
 }
