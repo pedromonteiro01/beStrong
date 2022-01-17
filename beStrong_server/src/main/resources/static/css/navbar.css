@@ -78,6 +78,10 @@ transform: rotate(25deg);
   transition: all 0.2s ease-out;
 }
 
+#nav-item a:hover {
+  cursor: pointer;
+}
+
 .fa-bars {
   color: #fff;
 }

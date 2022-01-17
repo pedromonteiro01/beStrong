@@ -30,6 +30,8 @@
                 document.getElementById("fullname").innerHTML = localStorage.getItem("Username");
                 document.getElementById("fullemail").innerHTML = localStorage.getItem("Email");
                 document.getElementById("fullnumber").innerHTML = localStorage.getItem("Phonenumber");
+            } else {
+                window.location.href = "index.html";
             }
         }
     </script>
