@@ -41,12 +41,12 @@ public class ClientController {
 
     @PostMapping
     public Client createClient(@Valid @RequestBody Client client, HttpServletRequest request) throws UnprocessableEntityException, Exception{
-        Client comp = clientService.findClientByEmail(client.getEmail());
-        if (comp != null) {
+        Optional<Client> comp = clientService.checkClientByEmail(client.getEmail());
+        if (comp.isPresent()) {
             throw new UnprocessableEntityException("Email already exists");
         }
-        comp = clientService.findClientByUsername(client.getName());
-        if (comp != null) {
+        comp = clientService.checkClientByUsername(client.getName());
+        if (comp.isPresent()) {
             throw new UnprocessableEntityException("Username already exists");
         }
         return clientService.saveClient(client);

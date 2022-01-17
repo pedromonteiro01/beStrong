@@ -1,9 +1,9 @@
-async function getData(url1, user, pw){
+async function getData(url1, user, pw, bol){
     const response1 = await fetch(url1);
     var data1 = await response1.json();
     console.log(data1);
     
-    verify_login(data1, user, pw);
+    verify_login(data1, user, pw, bol);
 }
 
 function login(){
@@ -19,11 +19,28 @@ function login(){
     console.log("user: ", username);
     console.log("pass: ", password);
 
-    getData("http://172.18.0.9:8081/clients", username, password);
+    getData("http://172.18.0.9:8081/clients", username, password, false);
 
 }
 
-function verify_login(data, user, pw){
+function login_trainer(){
+    console.log("control");
+    var username=document.getElementById("input-email").value;
+    var password=document.getElementById("input-password").value;
+
+    if(username=="" || password==""){
+        alert("You need to fill all fields!");
+        return;
+    }
+
+    console.log("user: ", username);
+    console.log("pass: ", password);
+
+    getData("http://172.18.0.9:8081/trainers", username, password, true);
+
+}
+
+function verify_login(data, user, pw, bol){
     var list;
     if (data.length <= 1)
         list = data;
@@ -34,6 +51,12 @@ function verify_login(data, user, pw){
         if (cls.email == user && cls.password==pw){
             console.log("user:",cls.email);
             localStorage.setItem("loggedIn", 1);
+            if(bol){
+                localStorage.setItem("isTrainer", 1);
+            }
+            else{
+                localStorage.setItem("isTrainer", 0);
+            }
             localStorage.setItem("Email", cls.email);
             localStorage.setItem("Username", cls.name);
             localStorage.setItem("Phonenumber", cls.phone);
@@ -41,6 +64,10 @@ function verify_login(data, user, pw){
             window.location.href="index.html";
             return;
         }
+    }
+    if (!(bol)){
+        login_trainer();
+        return;
     }
     alert("Wrong credentials!");
     return;

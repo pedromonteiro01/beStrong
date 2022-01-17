@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService{
@@ -27,6 +28,14 @@ public class ClientService{
 
     public Client getClientById(Integer id) {
         return clientRepository.findById(id).orElse(null);
+    }
+
+    public Optional<Client> checkClientByEmail(String email){
+        return clientRepository.findByEmail(email);
+    }
+    
+    public Optional<Client> checkClientByUsername(String username){
+        return clientRepository.findByUsername(username);
     }
 
     public List<Client> getClients() {

@@ -8,10 +8,24 @@ async function sendData(url, email1, password1, user1, phone1, weight1, height1)
     body: JSON.stringify({email: email1, password: password1, phone: phone1, weight: weight1, height: height1, name: user1}),
     });
     console.log(response);
+    if (response["status"]==422){
+        window.alert("Username or email already exists!");
+        return false;
+    }
+    else{
+        window.alert("Account created successfully!");
 
-    response.json().then(data => {
-    console.log(data);
-    });
+        // after sign up stay logged in
+        localStorage.setItem("loggedIn", 1);
+        localStorage.setItem("isTrainer", 0);
+        localStorage.setItem("Email", email1);
+        localStorage.setItem("Username", user1);
+        localStorage.setItem("Phonenumber", phone1);
+        localStorage.setItem("Password", password1);
+
+        window.location.href = "classes.html";
+        return true;
+    }
 }
 
 function signUp(){
@@ -30,17 +44,5 @@ function signUp(){
         return; 
     }
 
-    sendData("http://172.18.0.9:8081/clients", email, password, user, phone, weight, height);
-
-    window.alert("Account created successfully!");
-
-    // after sign up stay logged in
-    localStorage.setItem("loggedIn", 1);
-    localStorage.setItem("Email", email);
-    localStorage.setItem("Username", user);
-    localStorage.setItem("Phonenumber", phone);
-    localStorage.setItem("Password", password);
-
-    window.location.href = "classes.html";
-
+    var bol = sendData("http://172.18.0.9:8081/clients", email, password, user, phone, weight, height);
 }

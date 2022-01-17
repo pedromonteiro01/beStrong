@@ -20,7 +20,16 @@
     <script src="js/login.js"></script>
     <script>
       var log = localStorage.getItem("loggedIn");
-      if (log==1){
+      var isTrainer = localStorage.getItem("isTrainer");
+
+      if (log==1 && isTrainer==1){
+        document.getElementById("btn").style.display = "none";
+        document.getElementById("btn-log").style.display = "block";
+        var user = localStorage.getItem("Username");
+        let str = "Welcome, ";
+        document.getElementById("span-user").innerHTML = str.concat(user);
+      } 
+      else if (log==1 && isTrainer==0){
         document.getElementById("btn").style.display = "none";
         document.getElementById("btn-log").style.display = "block";
         var user = localStorage.getItem("Username");
@@ -121,6 +130,7 @@
             localStorage.removeItem("Username");
             localStorage.removeItem("Password");
             localStorage.removeItem("Phonenumber");
+            localStorage.setItem("isTrainer", 0);
             window.location.href = "index.html";
           }
         }
