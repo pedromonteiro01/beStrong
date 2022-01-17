@@ -32,4 +32,15 @@ function signUp(){
 
     sendData("http://172.18.0.9:8081/clients", email, password, user, phone, weight, height);
 
+    window.alert("Account created successfully!");
+
+    // after sign up stay logged in
+    localStorage.setItem("loggedIn", 1);
+    localStorage.setItem("Email", email);
+    localStorage.setItem("Username", user);
+    localStorage.setItem("Phonenumber", phone);
+    localStorage.setItem("Password", password);
+
+    window.location.href = "classes.html";
+
 }
