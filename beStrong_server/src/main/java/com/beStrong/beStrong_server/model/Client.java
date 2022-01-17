@@ -12,7 +12,6 @@ import java.util.Set;
 
 
 @Entity
-@Data
 @Table(name = "clients")
 public class Client extends User {
 
@@ -72,14 +71,6 @@ public class Client extends User {
 
     public String getPhone(){
         return super.getPhone();
-    }
-
-    public int getId(){
-        return super.getId();
-    }
-
-    public void setId(int id){
-        super.setId(id);
     }
 
     public void setHeight(Double height){

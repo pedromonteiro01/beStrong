@@ -13,12 +13,12 @@ public class ClientService{
     @Autowired
     private ClientRepository clientRepository;
 
-    public Client saveClient(Client Client) {
-        return clientRepository.save(Client);
+    public Client saveClient(Client client) {
+        return clientRepository.save(client);
     }
 
-    public List<Client> saveClientes(List<Client> Clientes) {
-        return clientRepository.saveAll(Clientes);
+    public List<Client> saveClients(List<Client> clients) {
+        return clientRepository.saveAll(clients);
     }
 
     public Client getClientByEmail(String email) {
@@ -36,5 +36,13 @@ public class ClientService{
     public String removeClient(Integer id) {
         clientRepository.deleteById(id);
         return "Client removed ( id: " + id + " )";
+    }
+
+    public Client findClientByEmail(String email) {
+        return clientRepository.findByEmail(email).orElse(null);
+    }
+
+    public Client findClientByUsername(String name) {
+        return clientRepository.findByUsername(name).orElse(null);
     }
 }

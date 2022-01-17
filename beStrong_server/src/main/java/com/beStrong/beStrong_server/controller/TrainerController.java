@@ -22,9 +22,6 @@ public class TrainerController {
     private ClientRepository clientRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private TrainerService trainerService;
 
     @GetMapping
