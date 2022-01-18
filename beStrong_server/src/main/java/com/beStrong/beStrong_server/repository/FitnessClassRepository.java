@@ -15,7 +15,8 @@ import org.springframework.data.domain.Page;
 
 @Repository
 public interface FitnessClassRepository extends JpaRepository<FitnessClass, Integer>{
-    Page<FitnessClass> findByTrainer(Trainer trainer, Pageable pageable);
+    List<FitnessClass> findByTrainer(Trainer trainer);
+    List<FitnessClass> findByTrainerAndType(Trainer trainer, String type);
     List<FitnessClass> findByType(String type);
     Optional<FitnessClass> findById(int id);
 }

@@ -1,6 +1,7 @@
 package com.beStrong.beStrong_server.service;
 
 import com.beStrong.beStrong_server.model.Client;
+import com.beStrong.beStrong_server.model.Trainer;
 import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.repository.FitnessClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class FitnessClassService{
 
     public List<FitnessClass> getFitnessClassesByType(String type) {
         return fitnessClassRepository.findByType(type);
+    }
+
+    public List<FitnessClass> geFitnessClassesByTrainer(Trainer trainer){
+        return fitnessClassRepository.findByTrainer(trainer);
+    }
+
+    public List<FitnessClass> geFitnessClassesByTrainerAndType(Trainer trainer, String type){
+        return fitnessClassRepository.findByTrainerAndType(trainer, type);
     }
 
     public List<FitnessClass> getFitnessClasses() {

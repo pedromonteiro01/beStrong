@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.beStrong.beStrong_server.model.FitnessClass;
+import com.beStrong.beStrong_server.model.Trainer;
 import com.beStrong.beStrong_server.repository.*;
 
 @RestController
@@ -54,6 +55,12 @@ public class FitnessClassController {
         //}
         //throw new ResourceNotFoundException("Patient not found for this id: " + patientId);
 
+    }
+
+    @GetMapping(value="/{type}/{trainer_id}", produces = "application/json")
+    public List<FitnessClass> getClassesByTrainer(@PathVariable(value = "trainer_id") Trainer trainer, @PathVariable(value = "type") String classType,HttpServletRequest request){
+
+        return fitnessClassService.geFitnessClassesByTrainerAndType(trainer, classType);
     }
 
 }
