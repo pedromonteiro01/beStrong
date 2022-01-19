@@ -74,4 +74,26 @@ public class FitnessClassService{
     }
 
 
+    public String cancelReservation(int class_id, int client_id) {
+
+        FitnessClass fitnessClass = this.getFitnessClassById(class_id);
+
+        if (fitnessClass == null)
+            return "No fitness class with ID " + class_id;
+
+        if (fitnessClass.getCurrentCapacity() >= fitnessClass.getMaxCapacity())
+            return "Fitness class with ID " + class_id + " is full";
+
+        Client client = this.clientService.getClientById(client_id);
+
+        if (client == null)
+            return  "No client with ID " + client_id;
+
+        fitnessClass.removeClient(client);
+        client.removeReservation(fitnessClass);
+
+        fitnessClassRepository.save(fitnessClass);
+
+        return "Reservation made for class " + class_id + " by client " + client_id;
+    }
 }

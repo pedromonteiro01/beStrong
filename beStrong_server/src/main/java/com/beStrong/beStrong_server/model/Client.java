@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -29,15 +30,8 @@ public class Client extends User {
     @EqualsAndHashCode.Exclude
     private Trainer trainer;
 
-    @ManyToMany( fetch = FetchType.EAGER )
-    @JoinTable(
-            name = "fitness_class_reservations",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "fitness_class_id"))
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @JsonIgnore
-    Set<FitnessClass> fitnessClasses;
+    @ManyToMany( mappedBy = "clients", fetch = FetchType.EAGER)
+    Set<FitnessClass> fitnessClasses = new HashSet<>();
 
     public Client(){
 
@@ -87,5 +81,9 @@ public class Client extends User {
 
     public void addReservation(FitnessClass fitnessClass) {
         this.fitnessClasses.add(fitnessClass);
+    }
+
+    public void removeReservation(FitnessClass fitnessClass) {
+        this.fitnessClasses.remove(fitnessClass);
     }
 }

@@ -9,8 +9,8 @@ from queue import MQ
 import mysql.connector
 
 # Odds of random event happening (don't need to be normalized)
-RANDOM_ENTRY = 0.3
-RANDOM_EXIT = 0.3
+RANDOM_ENTRY = 0.2
+RANDOM_EXIT = 0.2
 RANDOM_CLASS_CREATION = 0.05
 RANDOM_CLASS_RESERVATION = 0.15
 RANDOM_CLASS_RESERVATION_CANCELLATION = 0.5
@@ -18,6 +18,7 @@ RANDOM_CLASS_RESERVATION_CANCELLATION = 0.5
 
 class Generator:
     def __init__(self):
+        self.occupants = []
         self.clients = []
         self.trainers = []
         self.fitness_class_names = []
@@ -33,9 +34,6 @@ class Generator:
             self.client_cancel_class_reservation: RANDOM_CLASS_RESERVATION_CANCELLATION
         }
 
-        self.setup_variables()
-        self.occupants = random.choices(self.clients, k=random.randint(10, 30))
-
     def random_event(self):
         event = random.choices(list(self.random_events.keys()), weights=list(self.random_events.values()), k=1)[0]
         return event()
@@ -45,7 +43,7 @@ class Generator:
         date, start, end = get_start_end_date()
         max_capacity = random.randint(20, 40)
         name = choice(self.fitness_class_names)
-        class_id = max([c.class_id + 1 for c in self.fitness_classes], default=0)
+        class_id = len(self.fitness_classes) + 1
         local = random.choice(self.fitness_class_locations)
         fitness_class = FitnessClass(
             class_id,
@@ -111,7 +109,10 @@ class Generator:
 
     def setup_variables(self):
         try:
-            connection = mysql.connector.connect(host='db',
+            self.clients = []
+            self.trainers = []
+            self.fitness_classes = []
+            connection = mysql.connector.connect(host='172.18.0.6',
                                                  port='3306',
                                                  database='ies-bestrong',
                                                  user='root',
@@ -127,7 +128,6 @@ class Generator:
                 self.clients.append(client)
 
             sql_select_Query = "select * from trainers"
-            cursor = connection.cursor()
             cursor.execute(sql_select_Query)
 
             trainers = cursor.fetchall()
@@ -136,22 +136,23 @@ class Generator:
                 self.trainers.append(trainer)
 
             sql_select_Query = "select * from fitnessclasses"
-            cursor = connection.cursor()
             cursor.execute(sql_select_Query)
 
             fitness_classes = cursor.fetchall()
-            for fc_id, capacity, date, end, local, start, name, trainer_id in fitness_classes:
-                fitness_class = FitnessClass(fc_id, trainer_id, name, capacity, date, start, end, local)
+            for fc_id, date, end, local, max_capacity, start, name, trainer_id in fitness_classes:
+                fitness_class = FitnessClass(fc_id, trainer_id, name, max_capacity, date, start, end, local)
                 self.fitness_classes.append(fitness_class)
 
-        except mysql.connector.Error as e:
-            print("Error reading data from MySQL table", e)
-        finally:
             if connection.is_connected():
                 connection.close()
                 cursor.close()
                 print("MySQL connection is closed")
 
+            print(len("NUMBER OF CLASSES: " + str(len(self.fitness_classes))))
+
+        except mysql.connector.Error as e:
+            print("Error reading data from MySQL table", e)
+            return False
 
         with open('./static_data/fitness_classes_names.txt', 'r') as f:
             line = f.readline()
@@ -165,8 +166,8 @@ class Generator:
                 self.fitness_class_locations.append(line[:-1])
                 line = f.readline()
 
-
-generator = Generator()
+        self.occupants = random.choices(self.clients, k=random.randint(10, 30))
+        return True
 
 
 def get_start_end_date():
@@ -181,14 +182,20 @@ def get_start_end_date():
     return start.date(), start.time().strftime("%H:%M:%S"), end.time().strftime("%H:%M:%S")
 
 
+generator = Generator()
+
+
 def main():
-    queue = MQ('beStrong')
     while True:
-        sleep(random.randint(1, 7))
-        message = generator.random_event()
-        if message is None:
-        	continue
-        queue.send_msg(json.dumps(message, default=str))
+        queue = MQ('beStrong')
+        while True:
+            while not generator.setup_variables():
+                sleep(5)
+            sleep(random.randint(1, 7))
+            message = generator.random_event()
+            if message is None:
+                continue
+            queue.send_msg(json.dumps(message, default=str))
 
 
 if __name__ == '__main__':

@@ -63,6 +63,13 @@ public class Handler{
                 );
                 break;
 
+            case "RESERVATION_CANCELLATION":
+                ret = fitnessClassService.cancelReservation(
+                        Integer.parseInt(message.get("fitness_class").toString()),
+                        Integer.parseInt(message.get("user_id").toString())
+                );
+                break;
+
             default:
                 ret = "Unknown header " + message.get("header").toString();
         }

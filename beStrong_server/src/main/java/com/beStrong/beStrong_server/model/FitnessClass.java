@@ -3,6 +3,7 @@ package com.beStrong.beStrong_server.model;
 import com.fasterxml.jackson.annotation.*;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Time;
 import java.util.HashSet;
@@ -18,7 +19,16 @@ import javax.persistence.*;
 public class FitnessClass {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "sequence-generator")
+    @GenericGenerator(
+            name = "sequence-generator",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "class_sequence"),
+                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "4"),
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+            }
+    )
     private int id;
 
     @Column(name = "type", nullable = false)
@@ -148,5 +158,9 @@ public class FitnessClass {
 
     public void addClient(Client client) {
         this.clients.add(client);
+    }
+
+    public void removeClient(Client client) {
+        this.clients.remove(client);
     }
 }
