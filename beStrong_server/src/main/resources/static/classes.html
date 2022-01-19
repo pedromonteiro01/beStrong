@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/classes.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="connect()">
     <div class="load-html" id="NavigationMenu" data-source="includes/navbar.html"></div>
       <div class="container">
             <div class="row">
@@ -111,5 +111,10 @@
             });
         });
       </script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script type="text/javascript" src="js/chat.js"></script>
 </body>
 </html>

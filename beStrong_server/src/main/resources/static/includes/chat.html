@@ -20,25 +20,20 @@
                             <p>Manuel António</p>
                         </div>
                     </header>
-                    <div class="chat-box">
-                        <div class="chat outgoing">
-                            <div class="details">
-                                <p>Ola</p>
-                            </div>
-                        </div>
-                        <div class="chat incoming">
+                    <div class="chat-box" id="chat-box">
+                        <!--<div class="chat incoming">
                             <img src="img/pt.png" alt="">
                             <div class="details">
                                 <p>Entao, tudo bem?</p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
-                    <form action="#" class="typing-area">
-                        <input type="text" placeholder="Type something here...">
-                        <button><i class="fab fa-telegram-plane"></i></button>
+                    <form class="typing-area" id="messageForm" name="messageForm" nameForm="messageForm">
+                        <input type="text" id="message" placeholder="Type something here...">
+                        <button type="button" onclick="send()"><i class="fab fa-telegram-plane"></i></button>
                     </form>
                 </section>
-            </div>
+            </div> 
         </div>
             <button class="float" onclick="myFunction()">
                 <i class="far fa-comment-dots"></i>
