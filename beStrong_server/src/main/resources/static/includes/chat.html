@@ -8,13 +8,21 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/chat.css">
     </head>
+    <script>
+        var isTrainer = localStorage.getItem("isTrainer");
+        if (isTrainer == 1) {
+            document.getElementById('chat-img').src="../img/pt.png"; 
+        } else {
+            document.getElementById('chat-img').src="../img/user.png"; 
+        }
+    </script>
     <body>
         <div class="out">
         <div class="lab">
             <div id="wrapper" class="wrapper" style="display: none;">
                 <section class="chat-area">
                     <header>
-                        <img src="img/pt.png" alt="">
+                        <img id="chat-img" src="" alt="">
                         <div class="details">
                             <span>Web Chat</span>
                             <p>Manuel António</p>
