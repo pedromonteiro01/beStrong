@@ -141,7 +141,8 @@ function joinClass(button){
                 button.classList.remove("btn-success");
                 button.classList.add("btn-danger");
                 no = button.id.split("button_no")[1];
-                sendSubmission(url + "/classes/submitClass", no, localStorage.getItem("Id"));
+                console.log(url);
+                sendSubmission("http://172.18.0.9:8081" + "/classes/submitClass", no, localStorage.getItem("Id"));
                 console.log(data1);
             }
             else{
@@ -150,7 +151,7 @@ function joinClass(button){
                 button.classList.add("btn-success");
                 button.innerHTML = "GO";
                 no = button.id.split("button_no")[1];
-                removeSubmission(url + "/classes/cancelClass", no, localStorage.getItem("Id"));
+                removeSubmission("http://172.18.0.9:8081" + "/classes/cancelClass", no, localStorage.getItem("Id"));
                 console.log(data1);
             }
         }
@@ -164,10 +165,11 @@ function joinClass(button){
 console.log("control");
 const params = (new URL(document.location)).searchParams;
 let type = params.get('type');
+console.log(process.env.URL_VM);
 var url = process.env.URL_VM;
 console.log(url);
-let str1 = url + "/classes/";
-let str2 = url + "/types/";
+let str1 = "http://172.18.0.9:8081" + "/classes/";
+let str2 = "http://172.18.0.9:8081" + "/types/";
 let url1 = str1.concat(type);
 if (localStorage.getItem("isTrainer")==1){
     let trainer_id = localStorage.getItem("Id"); 
@@ -178,4 +180,5 @@ if (localStorage.getItem("isTrainer")==1){
 }
 let url2 = str2.concat(type);
 getData(url2, url1);
+
 
