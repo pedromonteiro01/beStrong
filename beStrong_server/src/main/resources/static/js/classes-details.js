@@ -165,6 +165,7 @@ console.log("control");
 const params = (new URL(document.location)).searchParams;
 let type = params.get('type');
 var url = process.env.URL_VM;
+console.log(url);
 let str1 = url + "/classes/";
 let str2 = url + "/types/";
 let url1 = str1.concat(type);
