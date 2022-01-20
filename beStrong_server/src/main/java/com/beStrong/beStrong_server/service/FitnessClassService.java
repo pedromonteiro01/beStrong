@@ -76,6 +76,7 @@ public class FitnessClassService{
 
     public String cancelReservation(int class_id, int client_id) {
 
+        System.out.println(this.getFitnessClasses());
         FitnessClass fitnessClass = this.getFitnessClassById(class_id);
 
         if (fitnessClass == null)

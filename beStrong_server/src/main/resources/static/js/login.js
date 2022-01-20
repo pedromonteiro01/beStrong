@@ -57,6 +57,7 @@ function verify_login(data, user, pw, bol){
             }
             else{
                 localStorage.setItem("isTrainer", 0);
+                localStorage.setItem("Id", cls.id);
             }
             localStorage.setItem("Email", cls.email);
             localStorage.setItem("Username", cls.name);

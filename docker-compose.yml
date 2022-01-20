@@ -6,14 +6,15 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-        MYSQL_ROOT_PASSWORD: password
+
         MYSQL_DATABASE: ies-bestrong
-        MYSQL_USER: root
+        MYSQL_USER: user
+        MYSQL_ROOT_PASSWORD: password
         MYSQL_PASSWORD: password
     ports:
         - "9906:3306"
     volumes:
-      - ./db:/var/lib/mysql
+      - ./db:/db/mysql
     networks:
       my-network:
         ipv4_address: 172.18.0.6
@@ -36,19 +37,15 @@ services:
     container_name: 'rabbitmq'
     ports:
         - 5672:5672
-        #- 15672:15672
     environment:
       RABBITMQ_DEFAULT_USER: "guest"
       RABBITMQ_DEFAULT_PASS: "guest"
     networks:
       my-network:
         ipv4_address: 172.18.0.8
-    # volumes:
-    #     - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-    #     - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq  
 
   server:
-    build: #he “starter” dependenciesfor:→Spring Web, Spring Data JPA, MySQLdriver, DevToolsandValidation.Be sure to complete the following tasks[covered in the tutorial]:c)Create the Employee entity.
+    build:
       context: ./beStrong_server
       dockerfile: Dockerfile
     ports:
@@ -68,38 +65,25 @@ services:
       my-network:
         ipv4_address: 172.18.0.9
   
+  sensors:
+    build:
+      context: data_generation
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - rabbitmq
+      - server
+    environment:
+      RABBITMQ_IP: rabbit
+      SERVER_IP: backend
+    restart: on-failure
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.10 
+ 
 networks: 
   my-network:
     ipam:
       driver: default
       config:
         - subnet: 172.18.0.0/16
-
-#  sensors:
-#    build:
-#      context: sensing
-#      dockerfile: Dockerfile
-#    depends_on:
-#      - db
-#      - rabbitmq
-#      - server
-#    environment:
-#      RABBITMQ_IP: rabbit
-#      SERVER_IP: backend
-#    restart: on-failure
-#
-#  client:   
-#    build:
-#      context: beStrong_client
-#      dockerfile: Dockerfile
-#    ports: 
-#      - '80:80'
-#    depends_on:
-#      - db
-#      - rabbitmq
-#      - server
-#      - sensors
-#    volumes: 
-#      - ./src:/etc/share/nginx/html
-#    environment:
-#      SERVER_IP: backend

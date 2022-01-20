@@ -22,6 +22,13 @@
           $("#includedContent").load("includes/navbar.html"); 
           $("#includedContent2").load("includes/footer.html"); 
         });
+
+        var log = localStorage.getItem("loggedIn");
+        var isTrainer = localStorage.getItem("isTrainer");
+
+        if (log == 1){
+          document.getElementById("try_button").style.display = "none";
+        }
     </script> 
     <script src="js/classes-details.js"></script>
 </head>
@@ -126,7 +133,7 @@
                 <td>17:30</td>
                 <td>18:30</td>
                 <td>20/35</td>
-                <td><button type="button" class="btn btn-success" style="border-radius: 100%;"  onclick="myFunction()">GO</button></td>
+                <td><button type="button" id="try_button" class="btn btn-success" style="border-radius: 100%;"  onclick="myFunction()">GO</button></td>
               </tr>
             </tbody>
           </table>
@@ -141,9 +148,9 @@
         if (localStorage.getItem("loggedIn")!=1){
           window.location.href = "sign-in.html";
         }
-        else{
-          window.location.href = "#classes-table";
-        }
+        //else{
+        //  window.location.href = "#classes-table";
+        //}
       }
     </script>
 </body>

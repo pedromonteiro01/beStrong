@@ -11,6 +11,36 @@ async function getData(url1, url2){
     show_data(data2);
 }
 
+async function sendSubmission(url1, class_id, client_id){
+    const response1 = await fetch(url1, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"classId": class_id, "clientId": client_id}),
+        });
+    var data1 = await response1.json();
+    console.log(class_id);
+    console.log(client_id);
+    console.log(data1)
+}
+
+async function removeSubmission(url1, class_id, client_id){
+    const response1 = await fetch(url1, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"classId": class_id, "clientId": client_id}),
+        });
+    var data1 = await response1.json();
+    console.log(class_id);
+    console.log(client_id);
+    console.log(data1)
+}
+
 var c = 0;
 
 function change_doc(data){
@@ -92,11 +122,43 @@ function show_data(data){
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
             <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
-            <td><button type="button" class="btn btn-success" style="border-radius: 100%;"  onclick="myFunction()">GO</button></td>          
+            <td><button type="button" id="button_no` + cls.id + `" class="btn btn-success" style="border-radius: 100%;"  onclick="joinClass(this)" value="go">GO</button></td>          
             </tr>`;
         }
     }
     document.getElementById("table_body").innerHTML = tab;
+}
+
+function joinClass(button){
+    logged = localStorage.getItem("loggedIn");
+    isTrainer = localStorage.getItem("isTrainer");
+    if(logged == 1){
+        if( isTrainer == 0){
+            console.log("button click");
+            if (button.value == "go"){
+                button.value = "cancel";
+                button.innerHTML = "X";
+                button.classList.remove("btn-success");
+                button.classList.add("btn-danger");
+                no = button.id.split("button_no")[1];
+                sendSubmission("http://172.18.0.9:8081/classes/submitClass", no, localStorage.getItem("Id"));
+                console.log(data1);
+            }
+            else{
+                button.value = "go";
+                button.classList.remove("btn-danger");
+                button.classList.add("btn-success");
+                button.innerHTML = "GO";
+                no = button.id.split("button_no")[1];
+                removeSubmission("http://172.18.0.9:8081/classes/cancelClass", no, localStorage.getItem("Id"));
+                console.log(data1);
+            }
+        }
+
+    }
+    else{
+        window.location.href = "sign-in.html";
+    }
 }
 
 console.log("control");
