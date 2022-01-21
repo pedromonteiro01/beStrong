@@ -165,9 +165,6 @@ function joinClass(button){
 console.log("control");
 const params = (new URL(document.location)).searchParams;
 let type = params.get('type');
-console.log(process.env.URL_VM);
-var url = process.env.URL_VM;
-console.log(url);
 let str1 = "http://172.18.0.9:8081" + "/classes/";
 let str2 = "http://172.18.0.9:8081" + "/types/";
 let url1 = str1.concat(type);
