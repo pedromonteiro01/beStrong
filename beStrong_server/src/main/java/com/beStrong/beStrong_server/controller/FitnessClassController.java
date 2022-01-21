@@ -3,12 +3,16 @@ package com.beStrong.beStrong_server.controller;
 import java.util.List;
 import java.util.Map;
 import java.security.Principal;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.beStrong.beStrong_server.service.FitnessClassService;
+import com.beStrong.beStrong_server.service.TrainerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +37,9 @@ public class FitnessClassController {
 
     @Autowired
     private FitnessClassService fitnessClassService;
+
+    @Autowired
+    private TrainerService trainerService;
 
     @GetMapping
     @ResponseBody
@@ -65,6 +72,29 @@ public class FitnessClassController {
     public List<FitnessClass> getClassesByTrainer(@PathVariable(value = "trainer_id") Trainer trainer, @PathVariable(value = "type") String classType,HttpServletRequest request){
 
         return fitnessClassService.geFitnessClassesByTrainerAndType(trainer, classType);
+    }
+
+    @PostMapping(value="/addClass", produces = "application/json")
+    public FitnessClass addClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
+
+        Trainer trainer = this.trainerService.getTrainerById(Integer.parseInt(payload.get("trainerId").toString()));
+
+        FitnessClass fitnessClass = new FitnessClass(
+                trainer,
+                payload.get("type").toString(),
+                Date.valueOf(payload.get("date").toString()),
+                Time.valueOf(payload.get("start_hour").toString()),
+                Time.valueOf(payload.get("ending_hour").toString()),
+                payload.get("local").toString(),
+                Integer.parseInt(payload.get("max_capacity").toString())
+        );
+
+        return fitnessClassService.saveFitnessClass(fitnessClass);
+    }
+
+    @PostMapping(value="/removeClass", produces = "application/json")
+    public String removeClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
+        return fitnessClassService.removeFitnessClass(Integer.parseInt(payload.get("trainerId").toString()));
     }
 
     @PostMapping(value="/submitClass", produces = "application/json")

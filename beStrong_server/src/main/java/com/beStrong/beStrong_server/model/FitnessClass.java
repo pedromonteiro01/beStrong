@@ -163,4 +163,8 @@ public class FitnessClass {
     public void removeClient(Client client) {
         this.clients.remove(client);
     }
+
+    public String toString(){
+        return this.id + "  " + this.local + "   " + this.type + "  " + this.date + "   " + this.start_hour + " " + this.ending_hour + "    " + this.max_capacity;
+    }
 }

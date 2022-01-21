@@ -11,6 +11,19 @@ async function getData(url1, url2){
     show_data(data2);
 }
 
+async function sendSubmission(url1, data){
+    const response1 = await fetch(url1, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        });
+    //var data1 = await response1.json();
+    console.log(response1);
+}
+
 var c = 0;
 
 function change_doc(data){
@@ -92,16 +105,30 @@ function show_data(data){
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
             <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
-            <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;"  onclick="myFunction()"><i class="fas fa-pencil-alt"></i></i></button></td>          
+            <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;"  onclick="editClass()"><i class="fas fa-pencil-alt"></i></i></button></td>          
             </tr>`;
         }
     }
     document.getElementById("table_body").innerHTML = tab;
 }
 
+function addClass(button){
+    
+    var room = document.getElementById("input_room").value;
+    var capacity = document.getElementById("capacity").value;
+    
+    var startDate = document.getElementById("input_start_date").value;
+    var endDate = document.getElementById("input_end_date").value;
+    console.log(startDate);
+    var data = {"trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room, "max_capacity": capacity};
+    sendSubmission("http://172.18.0.9:8081" + "/classes/addClass", data);
+
+    location.reload();
+}
+
 console.log("control");
 const params = (new URL(document.location)).searchParams;
-let type = params.get('type');
+var type = params.get('type');
 let str1 = "http://172.18.0.9:8081/classes/";
 let str2 = "http://172.18.0.9:8081/types/";
 let url1 = str1.concat(type);
