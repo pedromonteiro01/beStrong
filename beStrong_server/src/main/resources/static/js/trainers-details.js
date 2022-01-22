@@ -105,15 +105,14 @@ function show_data(data){
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
             <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
-            <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;"  onclick="editClass()"><i class="fas fa-pencil-alt"></i></i></button></td>          
+            <td><button type="button" id="class_no` + cls.id + `\" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;" onclick="setClassId(this)"><i class="fas fa-pencil-alt"></i></i></button></td>          
             </tr>`;
         }
     }
     document.getElementById("table_body").innerHTML = tab;
 }
 
-function addClass(button){
-    
+function addClass(){
     var room = document.getElementById("input_room").value;
     var capacity = document.getElementById("capacity").value;
     
@@ -126,9 +125,33 @@ function addClass(button){
     location.reload();
 }
 
+function setClassId(button){
+    variableClassId = button.id.split("class_no")[1];
+}
+
+function editClass(button){
+    var room = document.getElementById("input_room_edit").value;
+    
+    var startDate = document.getElementById("input_start_date_edit").value;
+    var endDate = document.getElementById("input_end_date_edit").value;
+    console.log(startDate);
+    var data = {"classId": variableClassId, "trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room};
+    sendSubmission("http://172.18.0.9:8081" + "/classes/updateClass", data);
+
+    location.reload();
+}
+
+function deleteClass(button){
+    var data = {"classId": variableClassId};
+    sendSubmission("http://172.18.0.9:8081" + "/classes/removeClass", data);
+
+    location.reload();
+}
+
 console.log("control");
 const params = (new URL(document.location)).searchParams;
 var type = params.get('type');
+var variableClassId;
 let str1 = "http://172.18.0.9:8081/classes/";
 let str2 = "http://172.18.0.9:8081/types/";
 let url1 = str1.concat(type);

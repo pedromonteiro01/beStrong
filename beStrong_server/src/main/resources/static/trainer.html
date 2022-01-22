@@ -37,25 +37,25 @@
             </div>
             <div class="modal-body">
               <label for="room" class="form-label"><i class="fas fa-users"></i>Change Room</label>
-              <input type="text" class="form-control" id="input-room">
+              <input type="text" class="form-control" id="input_room_edit">
   
               <br>
 
               <label for="start-date" class="form-label"><i class="fas fa-calendar-alt"></i></i>Change Start Date</label>
-              <input type="datetime-local" class="form-control" id="input-start-date">
+              <input type="datetime-local" class="form-control" id="input_start_date_edit">
   
               <br>
 
               <label for="end-date" class="form-label"><i class="fas fa-calendar-alt"></i></i>Change End Date</label>
-              <input type="datetime-local" class="form-control" id="input-end-date">
+              <input type="datetime-local" class="form-control" id="input_end_date_edit">
   
               <br>
   
-              <button type="button" class="btn btn-primary">Edit</button>
+              <button type="button" class="btn btn-primary" onclick="editClass(this)">Edit</button>
   
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 8rem;">Delete Class</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 8rem;" onclick="deleteClass(this)">Delete Class</button>
             </div>
           </div>
         </div>

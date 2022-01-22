@@ -46,6 +46,20 @@ public class FitnessClassService{
     }
 
     public String removeFitnessClass(int id) {
+
+        FitnessClass fClass = this.getFitnessClassById(id);
+
+        for( Client c :fClass.getClients()){
+            //c.removeReservation(fClass);;
+            //fClass.removeClient(c);
+            this.cancelReservation(fClass.getId(), c.getId());
+        }
+
+        fClass.getTrainer().removeClass(fClass);
+
+
+        //Trainer t = fClass.getTrainer();
+
         fitnessClassRepository.deleteById(id);
         return "Fitness Class removed ( id: " + id + " )";
     }

@@ -82,5 +82,8 @@ public class Trainer extends User {
         super.setPassword(password);;
     }
 
+    public void removeClass(FitnessClass fc){
+        this.fitnessClasses.remove(fc);
+    }
 }
 
