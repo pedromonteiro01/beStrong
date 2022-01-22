@@ -92,24 +92,48 @@ public class FitnessClassController {
         return fitnessClassService.saveFitnessClass(fitnessClass);
     }
 
-    @PostMapping(value="/removeClass", produces = "application/json")
-    public String removeClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
-        return fitnessClassService.removeFitnessClass(Integer.parseInt(payload.get("trainerId").toString()));
-    }
 
     @PostMapping(value="/submitClass", produces = "application/json")
     public String createClient(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
-        int classId = Integer.parseInt( "" + payload.get("classId"));
-        int clientId = Integer.parseInt("" + payload.get("clientId"));
-        System.out.println(classId  + " " + clientId);
+        int classId = Integer.parseInt( payload.get("classId").toString());
+        int clientId = Integer.parseInt( payload.get("clientId").toString());
         return "{\"result\" : \"" + fitnessClassService.makeReservation( classId, clientId) + "\"}";
     }
 
-    @PostMapping(value="/cancelClass", produces = "application/json")
+    @PostMapping(value="/removeClass", produces = "application/json")
     public String removeClient(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
-        int classId = Integer.parseInt( "" + payload.get("classId"));
-        int clientId = Integer.parseInt("" + payload.get("clientId"));
-        System.out.println(classId  + " " + clientId);
-        return "{\"result\" : \"" + fitnessClassService.cancelReservation( classId, clientId) + "\"}";
+        int classId = Integer.parseInt(payload.get("classId").toString());
+        return "{\"result\" : \"" + fitnessClassService.removeFitnessClass(classId) + "\"}";
     }
+
+    @PostMapping(value="/updateClass", produces = "application/json")
+    public String editClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
+        System.out.println("Hello");
+
+        int classId = Integer.parseInt(payload.get("classId").toString());
+        Trainer trainer = this.trainerService.getTrainerById(Integer.parseInt(payload.get("trainerId").toString()));
+
+        FitnessClass fc = fitnessClassService.getFitnessClassById(classId);
+
+        System.out.println("What");
+
+        fc.setDate(Date.valueOf(payload.get("date").toString()));
+        fc.setStarting(Time.valueOf(payload.get("start_hour").toString()));
+        fc.setEnding(Time.valueOf(payload.get("ending_hour").toString()));
+        fc.setLocal(payload.get("local").toString());
+
+        //FitnessClass newClass = new FitnessClass(  
+        //    trainer,   
+        //    payload.get("type").toString(),
+        //    Date.valueOf(payload.get("date").toString()),
+        //    Time.valueOf(payload.get("start_hour").toString()),
+        //    Time.valueOf(payload.get("ending_hour").toString()),
+        //    payload.get("local").toString(),
+        //    fc.getMaxCapacity());
+
+        //newClass.setId(classId);
+
+        return "{\"result\" : \"" + fitnessClassService.saveFitnessClass( fc ) + "\"}";
+    }
+
 }
