@@ -97,15 +97,24 @@ function show_data(data){
         `;
     }
     else{
+        var btn ;
         for (let i = 0; i < data.length; i++) {
             let cls = data[i];
             
+
+            //if( cls.id == localStorage.getItem("Id")){
+            //    btn = `<td><button type="button" id="class_no` + cls.id + `\" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;" onclick="setClassId(this)"><i class="fas fa-pencil-alt"></i></i></button></td>`;
+            //}
+            //else{
+            //    btn = "";
+            //}
+
             tab += `<tr> 
             <td>${cls.local} </td>
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
             <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
-            <td><button type="button" id="class_no` + cls.id + `\" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;" onclick="setClassId(this)"><i class="fas fa-pencil-alt"></i></i></button></td>          
+            <td><button type="button" id="class_no` + cls.id + `\" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;" onclick="setClassId(this)"><i class="fas fa-pencil-alt"></i></i></button></td>
             </tr>`;
         }
     }
@@ -119,6 +128,12 @@ function addClass(){
     var startDate = document.getElementById("input_start_date").value;
     var endDate = document.getElementById("input_end_date").value;
     console.log(startDate);
+
+    if(Date.parse(startDate) > Date.parse(endDate)){
+        alert("Ending date is before the starting date, please repeat.");
+        return null;
+    }
+
     var data = {"trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room, "max_capacity": capacity};
     sendSubmission("http://172.18.0.9:8081" + "/classes/addClass", data);
 
@@ -135,6 +150,13 @@ function editClass(button){
     var startDate = document.getElementById("input_start_date_edit").value;
     var endDate = document.getElementById("input_end_date_edit").value;
     console.log(startDate);
+
+
+    if(Date.parse(startDate) > Date.parse(endDate)){
+        alert("Ending date is before the starting date, please repeat.");
+        return null;
+    }
+
     var data = {"classId": variableClassId, "trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room};
     sendSubmission("http://172.18.0.9:8081" + "/classes/updateClass", data);
 
