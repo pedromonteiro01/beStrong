@@ -6,10 +6,12 @@ import java.security.Principal;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.beStrong.beStrong_server.service.ClientService;
 import com.beStrong.beStrong_server.service.FitnessClassService;
 import com.beStrong.beStrong_server.service.TrainerService;
 
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.beStrong.beStrong_server.exception.UnprocessableEntityException;
+import com.beStrong.beStrong_server.model.Client;
 import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.model.Trainer;
 import com.beStrong.beStrong_server.repository.*;
@@ -74,6 +77,16 @@ public class FitnessClassController {
         return fitnessClassService.geFitnessClassesByTrainerAndType(trainer, classType);
     }
 
+    @PostMapping(value="/getEnlistedClasses", produces = "application/json")
+    public Set<FitnessClass> getEnlistedClasses(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
+        Optional<Client> c = clientRepository.findById(Integer.parseInt(payload.get("clientId").toString()));
+        System.out.println(c.get().getId());
+        System.out.println(c.get().getName());
+        System.out.println(c.get().getFitnessClasses());
+        return c.get().getFitnessClasses();
+    }
+
+    //Adicionar Aula
     @PostMapping(value="/addClass", produces = "application/json")
     public FitnessClass addClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
 
@@ -92,12 +105,21 @@ public class FitnessClassController {
         return fitnessClassService.saveFitnessClass(fitnessClass);
     }
 
-
+    //Reservar Lugar
     @PostMapping(value="/submitClass", produces = "application/json")
     public String createClient(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
         int classId = Integer.parseInt( payload.get("classId").toString());
         int clientId = Integer.parseInt( payload.get("clientId").toString());
         return "{\"result\" : \"" + fitnessClassService.makeReservation( classId, clientId) + "\"}";
+    }
+
+    //Cancelar Reserva
+    @PostMapping(value="/cancelClass", produces = "application/json")
+    public String cancelClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
+        int classId = Integer.parseInt( "" + payload.get("classId"));
+        int clientId = Integer.parseInt("" + payload.get("clientId"));
+        System.out.println(classId  + " " + clientId);
+        return "{\"result\" : \"" + fitnessClassService.cancelReservation( classId, clientId) + "\"}";
     }
 
     @PostMapping(value="/removeClass", produces = "application/json")
@@ -111,7 +133,6 @@ public class FitnessClassController {
         System.out.println("Hello");
 
         int classId = Integer.parseInt(payload.get("classId").toString());
-        Trainer trainer = this.trainerService.getTrainerById(Integer.parseInt(payload.get("trainerId").toString()));
 
         FitnessClass fc = fitnessClassService.getFitnessClassById(classId);
 
@@ -122,16 +143,6 @@ public class FitnessClassController {
         fc.setEnding(Time.valueOf(payload.get("ending_hour").toString()));
         fc.setLocal(payload.get("local").toString());
 
-        //FitnessClass newClass = new FitnessClass(  
-        //    trainer,   
-        //    payload.get("type").toString(),
-        //    Date.valueOf(payload.get("date").toString()),
-        //    Time.valueOf(payload.get("start_hour").toString()),
-        //    Time.valueOf(payload.get("ending_hour").toString()),
-        //    payload.get("local").toString(),
-        //    fc.getMaxCapacity());
-
-        //newClass.setId(classId);
 
         return "{\"result\" : \"" + fitnessClassService.saveFitnessClass( fc ) + "\"}";
     }

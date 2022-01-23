@@ -81,7 +81,8 @@ public class FitnessClassService{
 
         fitnessClass.addClient(client);
         client.addReservation(fitnessClass);
-
+        System.out.println(client.getId());
+        System.out.println(client.getFitnessClasses());
         fitnessClassRepository.save(fitnessClass);
 
         return "Reservation made for class " + class_id + " by client " + client_id;

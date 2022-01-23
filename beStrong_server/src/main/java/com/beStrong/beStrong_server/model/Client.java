@@ -86,4 +86,8 @@ public class Client extends User {
     public void removeReservation(FitnessClass fitnessClass) {
         this.fitnessClasses.remove(fitnessClass);
     }
+
+    public Set<FitnessClass> getFitnessClasses(){
+        return this.fitnessClasses;
+    }
 }

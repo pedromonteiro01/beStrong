@@ -21,9 +21,25 @@ async function sendSubmission(url1, class_id, client_id){
         body: JSON.stringify({"classId": class_id, "clientId": client_id}),
         });
     var data1 = await response1.json();
-    console.log(class_id);
-    console.log(client_id);
+
     console.log(data1)
+}
+
+async function getEnlistedClasses(url, data){
+    const response3 = await fetch(url, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => (enlistedClasses = data));
+    //var data3 = await response3.json();
+    //console.log(response3);
+    //return data3;
+    console.log(enlistedClasses);
 }
 
 async function removeSubmission(url1, class_id, client_id){
@@ -101,7 +117,11 @@ function change_doc(data){
 
 }
 
-function show_data(data){
+function show_data(data, info = null){
+
+    console.log(enlistedClasses);
+
+    console.log("continue");
     var list;
     if (data.length <= 1)
         list = data;
@@ -114,16 +134,34 @@ function show_data(data){
         `;
     }
     else{
+        var btn = "";
+        var inList;
         for (let i = 0; i < data.length; i++) {
             let cls = data[i];
             
+            inList = false;
+            for( let i = 0; i < enlistedClasses.length; i++){
+                console.log(enlistedClasses[i].id);
+                if(enlistedClasses[i].id == cls.id){
+                    inList = true;
+                }
+            }
+
+            if(!inList){ 
+                btn = `<td><button type="button" id="button_no` + cls.id + `" class="btn btn-success" style="border-radius: 100%;"  onclick="joinClass(this)" value="go">GO</button></td>`;
+            }
+            else{
+                btn = `<td><button type="button" id="button_no` + cls.id + `" class="btn btn-danger" style="border-radius: 100%;"  onclick="joinClass(this)" value="cancel">X</button></td>`;
+            }
+
             tab += `<tr> 
             <td>${cls.local} </td>
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
             <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
-            <td><button type="button" id="button_no` + cls.id + `" class="btn btn-success" style="border-radius: 100%;"  onclick="joinClass(this)" value="go">GO</button></td>          
+            ` + btn + `
             </tr>`;
+
         }
     }
     document.getElementById("table_body").innerHTML = tab;
@@ -141,9 +179,7 @@ function joinClass(button){
                 button.classList.remove("btn-success");
                 button.classList.add("btn-danger");
                 no = button.id.split("button_no")[1];
-                console.log(url);
                 sendSubmission("http://172.18.0.9:8081" + "/classes/submitClass", no, localStorage.getItem("Id"));
-                console.log(data1);
             }
             else{
                 button.value = "go";
@@ -152,7 +188,6 @@ function joinClass(button){
                 button.innerHTML = "GO";
                 no = button.id.split("button_no")[1];
                 removeSubmission("http://172.18.0.9:8081" + "/classes/cancelClass", no, localStorage.getItem("Id"));
-                console.log(data1);
             }
         }
 
@@ -176,6 +211,14 @@ if (localStorage.getItem("isTrainer")==1){
     window.location.href = tab;
 }
 let url2 = str2.concat(type);
+
+var enlistedClasses;
+if(localStorage.getItem("loggedIn") == 1 ){
+    var data = {"clientId" : localStorage.getItem("Id")};
+    enlistedClasses = getEnlistedClasses("http://172.18.0.9:8081" + "/classes/getEnlistedClasses", data);
+    console.log(enlistedClasses);
+}
+
 getData(url2, url1);
 
 
