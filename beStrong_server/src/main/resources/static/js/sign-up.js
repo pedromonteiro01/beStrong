@@ -44,5 +44,7 @@ function signUp(){
         return; 
     }
 
+    password = sha512(password);
+
     var bol = sendData("http://172.18.0.9:8081/clients", email, password, user, phone, weight, height);
 }

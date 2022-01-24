@@ -19,6 +19,8 @@ function login(){
     console.log("user: ", username);
     console.log("pass: ", password);
 
+    password = sha512(password);
+
     getData("http://172.18.0.9:8081/clients", username, password, false);
 
 }
@@ -35,6 +37,7 @@ function login_trainer(){
 
     console.log("user: ", username);
     console.log("pass: ", password);
+    password = sha512(password);
 
     getData("http://172.18.0.9:8081/trainers", username, password, true);
 
