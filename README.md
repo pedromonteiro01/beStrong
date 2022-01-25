@@ -39,6 +39,6 @@ And run the script that will start dockers
 ```
 ./run.sh
 ```
-
+The project will be accessible at [172.18.0.9:8081](http://172.18.0.9:8081)
 
 ## API Documentation
