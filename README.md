@@ -42,7 +42,7 @@ And run the script that will start dockers
 The project will be accessible at [172.18.0.9:8081](http://172.18.0.9:8081)
 
 ## API Documentation
-API Documentation was created using [here](https://swagger.io/resources/articles/documenting-apis-with-swagger/)
+API Documentation was created using [OpenAPI/Swagger framework](https://swagger.io/resources/articles/documenting-apis-with-swagger/) <br>
 Can be found [here](https://app.swaggerhub.com/apis-docs/tiagomrm/beStrong/0.1)
 
 ## Accesses
