@@ -1,5 +1,5 @@
-//urlBase = "http://172.18.0.9:8081";
-urlBase = "http://deti-engsoft-11.ua.pt:8081";
+urlBase = "http://172.18.0.9:8081";
+//urlBase = "http://deti-engsoft-11.ua.pt:8081";
 
 async function getData(url1, url2){
     const response1 = await fetch(url1);
@@ -16,7 +16,7 @@ async function getData(url1, url2){
     console.log("load complete");
 }
 
-async function sendSubmission(url1, class_id, client_id){
+async function sendReservation(url1, class_id, client_id){
     const response1 = await fetch(url1, {
         method: 'POST',
         headers: {
@@ -31,14 +31,12 @@ async function sendSubmission(url1, class_id, client_id){
 }
 
 async function getEnlistedClasses(url, data){
-    const response3 = await fetch(url, {
-        method: 'POST',
+    const response3 = await fetch(url + "/" + data, {
+        method: 'GET',
         headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-        })
+        'Accept': 'application/json'
+        //'Content-Type': 'application/json'
+        }})
         .then(response => response.json())
         .then(data => (enlistedClasses = data));
     //var data3 = await response3.json();
@@ -47,9 +45,9 @@ async function getEnlistedClasses(url, data){
     console.log(enlistedClasses);
 }
 
-async function removeSubmission(url1, class_id, client_id){
+async function removeReservation(url1, class_id, client_id){
     const response1 = await fetch(url1, {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -186,7 +184,7 @@ function joinClass(button){
                 button.classList.remove("btn-success");
                 button.classList.add("btn-danger");
                 no = button.id.split("button_no")[1];
-                sendSubmission(urlBase + "/classes/submitClass", no, localStorage.getItem("Id"));
+                sendReservation(urlBase + "/classes/makeReservation", no, localStorage.getItem("Id"));
             }
             else{
                 button.value = "go";
@@ -194,7 +192,7 @@ function joinClass(button){
                 button.classList.add("btn-success");
                 button.innerHTML = "GO";
                 no = button.id.split("button_no")[1];
-                removeSubmission(urlBase + "/classes/cancelClass", no, localStorage.getItem("Id"));
+                removeReservation(urlBase + "/classes/cancelReservation", no, localStorage.getItem("Id"));
             }
         }
 
@@ -223,11 +221,17 @@ let url2 = str2.concat(type);
 
 var enlistedClasses;
 if(localStorage.getItem("loggedIn") == 1 ){
-    var data = {"clientId" : localStorage.getItem("Id")};
+    var data = localStorage.getItem("Id");
     enlistedClasses = getEnlistedClasses(urlBase + "/classes/getEnlistedClasses", data);
     console.log(enlistedClasses);
 }
 
-getData(url2, url1);
+//getData(url2, url1);
 
-
+//const promiseOfSomeData = fetch("some.json").then(r=>r.json()).then(data => {
+//    console.log('in async');
+//    return data;
+//});
+window.onload = async () => {
+    await getData(url2, url1);
+};

@@ -18,9 +18,11 @@ import com.beStrong.beStrong_server.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -79,9 +81,9 @@ public class FitnessClassController {
         return fitnessClassService.geFitnessClassesByTrainerAndType(trainer, classType);
     }
 
-    @PostMapping(value="/getEnlistedClasses", produces = "application/json")
-    public Set<FitnessClass> getEnlistedClasses(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
-        Optional<Client> c = clientRepository.findById(Integer.parseInt(payload.get("clientId").toString()));
+    @GetMapping(value="/getEnlistedClasses/{client_id}", produces = "application/json")
+    public Set<FitnessClass> getEnlistedClasses(@PathVariable(value = "client_id") String client_id, HttpServletRequest request){
+        Optional<Client> c = clientRepository.findById(Integer.parseInt(client_id));
         System.out.println(c.get().getId());
         System.out.println(c.get().getName());
         System.out.println(c.get().getFitnessClasses());
@@ -108,7 +110,7 @@ public class FitnessClassController {
     }
 
     //Reservar Lugar
-    @PostMapping(value="/submitClass", produces = "application/json")
+    @PostMapping(value="/makeReservation", produces = "application/json")
     public String createClient(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
         int classId = Integer.parseInt( payload.get("classId").toString());
         int clientId = Integer.parseInt( payload.get("clientId").toString());
@@ -116,7 +118,7 @@ public class FitnessClassController {
     }
 
     //Cancelar Reserva
-    @PostMapping(value="/cancelClass", produces = "application/json")
+    @DeleteMapping(value="/cancelReservation", produces = "application/json")
     public String cancelClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
         int classId = Integer.parseInt( "" + payload.get("classId"));
         int clientId = Integer.parseInt("" + payload.get("clientId"));
@@ -124,21 +126,19 @@ public class FitnessClassController {
         return "{\"result\" : \"" + fitnessClassService.cancelReservation( classId, clientId) + "\"}";
     }
 
-    @PostMapping(value="/removeClass", produces = "application/json")
+    @DeleteMapping(value="/removeClass", produces = "application/json")
     public String removeClient(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
         int classId = Integer.parseInt(payload.get("classId").toString());
         return "{\"result\" : \"" + fitnessClassService.removeFitnessClass(classId) + "\"}";
     }
 
-    @PostMapping(value="/updateClass", produces = "application/json")
+    @PutMapping(value="/updateClass", produces = "application/json")
     public String editClass(@Valid @RequestBody Map<String, String> payload, HttpServletRequest request) throws UnprocessableEntityException, Exception{
         System.out.println("Hello");
 
         int classId = Integer.parseInt(payload.get("classId").toString());
 
         FitnessClass fc = fitnessClassService.getFitnessClassById(classId);
-
-        System.out.println("What");
 
         fc.setDate(Date.valueOf(payload.get("date").toString()));
         fc.setStarting(Time.valueOf(payload.get("start_hour").toString()));

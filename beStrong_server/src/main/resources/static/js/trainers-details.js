@@ -1,5 +1,5 @@
-//urlBase = "http://172.18.0.9:8081";
-urlBase = "http://deti-engsoft-11.ua.pt:8081";
+urlBase = "http://172.18.0.9:8081";
+//urlBase = "http://deti-engsoft-11.ua.pt:8081";
 
 async function getData(url1, url2){
     const response1 = await fetch(url1);
@@ -14,8 +14,8 @@ async function getData(url1, url2){
     show_data(data2);
 }
 
-async function sendSubmission(url1, data){
-    const response1 = await fetch(url1, {
+async function addClassSend(url1, data){
+    const response2 = await fetch(url1, {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -24,7 +24,33 @@ async function sendSubmission(url1, data){
         body: JSON.stringify(data),
         });
     //var data1 = await response1.json();
-    console.log(response1);
+    console.log(response2);
+}
+
+async function updateClassSend(url1, data){
+    const response3 = await fetch(url1, {
+        method: 'PUT',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        });
+    //var data1 = await response1.json();
+    console.log(response3);
+}
+
+async function removeClassSend(url1, data){
+    const response4 = await fetch(url1, {
+        method: 'DELETE',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        });
+    //var data1 = await response1.json();
+    console.log(response4);
 }
 
 var c = 0;
@@ -138,7 +164,7 @@ function addClass(){
     }
 
     var data = {"trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room, "max_capacity": capacity};
-    sendSubmission(urlBase + "/classes/addClass", data);
+    addClassSend(urlBase + "/classes/addClass", data);
 
     location.reload();
 }
@@ -161,14 +187,14 @@ function editClass(button){
     }
 
     var data = {"classId": variableClassId, "trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room};
-    sendSubmission(urlBase + "/classes/updateClass", data);
+    updateClassSend(urlBase + "/classes/updateClass", data);
 
     location.reload();
 }
 
 function deleteClass(button){
     var data = {"classId": variableClassId};
-    sendSubmission(urlBase + "/classes/removeClass", data);
+    removeClassSend(urlBase + "/classes/removeClass", data);
 
     location.reload();
 }

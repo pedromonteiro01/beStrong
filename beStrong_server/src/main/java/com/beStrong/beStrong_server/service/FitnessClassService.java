@@ -97,8 +97,8 @@ public class FitnessClassService{
         if (fitnessClass == null)
             return "No fitness class with ID " + class_id;
 
-        if (fitnessClass.getCurrentCapacity() >= fitnessClass.getMaxCapacity())
-            return "Fitness class with ID " + class_id + " is full";
+        //if (fitnessClass.getCurrentCapacity() >= fitnessClass.getMaxCapacity())
+        //    return "Fitness class with ID " + class_id + " is full";
 
         Client client = this.clientService.getClientById(client_id);
 
@@ -110,6 +110,6 @@ public class FitnessClassService{
 
         fitnessClassRepository.save(fitnessClass);
 
-        return "Reservation made for class " + class_id + " by client " + client_id;
+        return "Reservation canceled for class " + class_id + " by client " + client_id;
     }
 }
