@@ -9,6 +9,8 @@ async function getData(url1, url2){
     change_doc(data1);
     
     show_data(data2);
+
+    console.log("load complete");
 }
 
 async function sendSubmission(url1, class_id, client_id){
@@ -139,11 +141,13 @@ function show_data(data, info = null){
         for (let i = 0; i < data.length; i++) {
             let cls = data[i];
             
+            if(localStorage.getItem("loggedIn") == 1 ){
             inList = false;
-            for( let i = 0; i < enlistedClasses.length; i++){
-                console.log(enlistedClasses[i].id);
-                if(enlistedClasses[i].id == cls.id){
-                    inList = true;
+                for( let i = 0; i < enlistedClasses.length; i++){
+                    console.log(enlistedClasses[i].id);
+                    if(enlistedClasses[i].id == cls.id){
+                        inList = true;
+                    }
                 }
             }
 
