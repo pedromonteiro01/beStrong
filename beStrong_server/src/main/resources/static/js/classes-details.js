@@ -183,7 +183,9 @@ function joinClass(button){
                 button.classList.remove("btn-success");
                 button.classList.add("btn-danger");
                 no = button.id.split("button_no")[1];
-                sendSubmission("http://172.18.0.9:8081" + "/classes/submitClass", no, localStorage.getItem("Id"));
+                //sendSubmission("http://172.18.0.9:8081" + "/classes/submitClass", no, localStorage.getItem("Id"));
+                sendSubmission("http://deti-engsoft-11.ua.pt/:8081" + "/classes/submitClass", no, localStorage.getItem("Id"));
+
             }
             else{
                 button.value = "go";
@@ -191,7 +193,9 @@ function joinClass(button){
                 button.classList.add("btn-success");
                 button.innerHTML = "GO";
                 no = button.id.split("button_no")[1];
-                removeSubmission("http://172.18.0.9:8081" + "/classes/cancelClass", no, localStorage.getItem("Id"));
+                //removeSubmission("http://172.18.0.9:8081" + "/classes/cancelClass", no, localStorage.getItem("Id"));
+                removeSubmission("http://deti-engsoft-11.ua.pt:8081" + "/classes/cancelClass", no, localStorage.getItem("Id"));
+
             }
         }
 
@@ -204,8 +208,10 @@ function joinClass(button){
 console.log("control");
 const params = (new URL(document.location)).searchParams;
 let type = params.get('type');
-let str1 = "http://172.18.0.9:8081" + "/classes/";
-let str2 = "http://172.18.0.9:8081" + "/types/";
+//let str1 = "http://172.18.0.9:8081" + "/classes/";
+//let str2 = "http://172.18.0.9:8081" + "/types/";
+let str1 = "http://deti-engsoft-11.ua.pt:8081" + "/classes/";
+let str2 = "http://deti-engsoft-11.ua.pt:8081" + "/types/";
 let url1 = str1.concat(type);
 if (localStorage.getItem("isTrainer")==1){
     let trainer_id = localStorage.getItem("Id"); 
@@ -219,8 +225,10 @@ let url2 = str2.concat(type);
 var enlistedClasses;
 if(localStorage.getItem("loggedIn") == 1 ){
     var data = {"clientId" : localStorage.getItem("Id")};
-    enlistedClasses = getEnlistedClasses("http://172.18.0.9:8081" + "/classes/getEnlistedClasses", data);
+    enlistedClasses = getEnlistedClasses("http://deti-engsoft-11.ua.pt:8081" + "/classes/getEnlistedClasses", data);
+    //enlistedClasses = getEnlistedClasses("http://172.18.0.9:8081" + "/classes/getEnlistedClasses", data);
     console.log(enlistedClasses);
+
 }
 
 getData(url2, url1);
