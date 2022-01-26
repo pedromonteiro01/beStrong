@@ -1,3 +1,6 @@
+//urlBase = "http://172.18.0.9:8081";
+urlBase = "http://deti-engsoft-11.ua.pt:8081";
+
 async function getData(url1, url2){
     const response1 = await fetch(url1);
     var data1 = await response1.json();
@@ -135,7 +138,7 @@ function addClass(){
     }
 
     var data = {"trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room, "max_capacity": capacity};
-    sendSubmission("http://172.18.0.9:8081" + "/classes/addClass", data);
+    sendSubmission(urlBase + "/classes/addClass", data);
 
     location.reload();
 }
@@ -158,14 +161,14 @@ function editClass(button){
     }
 
     var data = {"classId": variableClassId, "trainerId": localStorage.getItem("Id"),"type": type, "date": startDate.split("T")[0], "start_hour": startDate.split("T")[1] + ":00", "ending_hour": endDate.split("T")[1] + ":00", "local": room};
-    sendSubmission("http://172.18.0.9:8081" + "/classes/updateClass", data);
+    sendSubmission(urlBase + "/classes/updateClass", data);
 
     location.reload();
 }
 
 function deleteClass(button){
     var data = {"classId": variableClassId};
-    sendSubmission("http://172.18.0.9:8081" + "/classes/removeClass", data);
+    sendSubmission(urlBase + "/classes/removeClass", data);
 
     location.reload();
 }
@@ -174,8 +177,8 @@ console.log("control");
 const params = (new URL(document.location)).searchParams;
 var type = params.get('type');
 var variableClassId;
-let str1 = "http://172.18.0.9:8081/classes/";
-let str2 = "http://172.18.0.9:8081/types/";
+let str1 = urlBase + "/classes/";
+let str2 = urlBase + "/types/";
 let url1 = str1.concat(type);
 let trainer_id = localStorage.getItem("Id"); 
 let s = "/" + trainer_id.toString();

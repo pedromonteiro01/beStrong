@@ -1,3 +1,6 @@
+//urlBase = "http://172.18.0.9:8081";
+urlBase = "http://deti-engsoft-11.ua.pt/";
+
 async function getData(url1, user, pw, bol){
     const response1 = await fetch(url1);
     var data1 = await response1.json();
@@ -21,7 +24,7 @@ function login(){
 
     password = sha512(password);
 
-    getData("http://172.18.0.9:8081/clients", username, password, false);
+    getData(urlBase + "/clients", username, password, false);
 
 }
 
@@ -39,7 +42,7 @@ function login_trainer(){
     console.log("pass: ", password);
     password = sha512(password);
 
-    getData("http://172.18.0.9:8081/trainers", username, password, true);
+    getData(urlBase + "/trainers", username, password, true);
 
 }
 

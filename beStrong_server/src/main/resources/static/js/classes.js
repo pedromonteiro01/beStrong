@@ -1,3 +1,6 @@
+//urlBase = "http://172.18.0.9:8081";
+urlBase = "http://deti-engsoft-11.ua.pt/";
+
 async function getData(url){
     const response = await fetch(url);
     var data = await response.json();
@@ -26,5 +29,5 @@ function show_data(data){
 
 
 console.log("control");
-getData("http://172.18.0.9:8081/classes");
+getData(urlBase + "/classes");
 
