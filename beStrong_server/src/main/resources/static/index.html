@@ -21,7 +21,7 @@
     </script> 
     <title>Home</title>
   </head>
-  <body>
+  <body onload="connect()">
     <div id="includedContent"></div>
 
       <div class="cover">
@@ -34,5 +34,10 @@
           <button type="button" class="btn-started">Let's get started</button>
         </div>
       </div>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script type="text/javascript" src="js/data.js"></script>
   </body>
 </html>
