@@ -42,3 +42,14 @@ And run the script that will start dockers
 The project will be accessible at [172.18.0.9:8081](http://172.18.0.9:8081)
 
 ## API Documentation
+- [/clients](http://172.18.0.9:8081/clients)
+    - list of all clients in the database
+- [/trainers](http://172.18.0.9:8081/clients)
+    - list of all trainers in the database
+
+## Accesses
+
+| *Email* | *Password* | *Role*    |
+|------------|------------|-----------|
+| candreuzzi3@howstuffworks.com   | JeqHeCGK9WQs       | Trainer    |
+| wimpettp@g.co      | 1MgLuwygcpb       | Client   |
