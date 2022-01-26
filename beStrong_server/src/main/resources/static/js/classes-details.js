@@ -9,7 +9,6 @@ async function getData(url1, url2){
     change_doc(data1);
     
     show_data(data2);
-
     console.log("load complete");
 }
 
@@ -199,6 +198,7 @@ function joinClass(button){
     else{
         window.location.href = "sign-in.html";
     }
+    document.location.reload(true);
 }
 
 console.log("control");
