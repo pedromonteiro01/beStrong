@@ -1,0 +1,4 @@
+beStrong_server/target/classes
+beStrong_server/target/generated*
+beStrong_server/target/maven*
+beStrong_server/target/test*

@@ -1,8 +1,4 @@
 HELP.md
-target/classes
-target/generated*
-target/maven*
-target/test*
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
