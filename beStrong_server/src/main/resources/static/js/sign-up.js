@@ -1,5 +1,5 @@
 //urlBase = "http://172.18.0.9:8081";
-urlBase = "http://deti-engsoft-11.ua.pt/";
+urlBase = "http://deti-engsoft-11.ua.pt:8081";
 
 async function sendData(url, email1, password1, user1, phone1, weight1, height1){
     const response = await fetch(url, {
