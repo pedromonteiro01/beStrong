@@ -9,10 +9,10 @@ Project Abstract:
     - make payments.
 
 Project Team:
-- 97484: Pedro Monteiro - DevOps
-- 98134: Tiago Matos - Architect
-- 98396: Vítor Dias - Product Owner
-- 98512: Eduardo Fernandes - Team Manager
+- 97484: [Pedro Monteiro](https://github.com/pedromonteiro01) - DevOps
+- 98134: [Tiago Matos](https://github.com/tiagomrm) - Architect
+- 98396: [Vitor Dias](https://github.com/vitordiasua) - Product Owner
+- 98512: [Eduardo Fernandes](https://github.com/rezeett) - Team Manager
 
 Resources:
 - Board: https://be-strong.atlassian.net/jira/software/projects/BES/boards/1
