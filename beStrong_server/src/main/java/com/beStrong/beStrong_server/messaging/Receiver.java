@@ -15,7 +15,7 @@ public class Receiver {
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
-    public static int num_entries = 35;
+    public static int num_entries = 50;
     public static String payload= "";
 
     @Autowired
