@@ -49,5 +49,5 @@ Can be found [here](https://app.swaggerhub.com/apis-docs/tiagomrm/beStrong/0.1)
 
 | *Email* | *Password* | *Role*    |
 |------------|------------|-----------|
-| candreuzzi3@howstuffworks.com   | JeqHeCGK9WQs       | Trainer    |
-| wimpettp@g.co      | 1MgLuwygcpb       | Client   |
+| candreuzzi3@howstuffworks.com   | JeqHeCGK9WQs       | Client    |
+| wimpettp@g.co      | 1MgLuwygcpb       | Trainer   |
