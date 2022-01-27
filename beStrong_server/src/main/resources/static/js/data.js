@@ -28,15 +28,15 @@ function onMessageReceived(payload) {
         }
     }
     else if(message.hasOwnProperty("type")){
-        var id = "capacity" + message.id;
         var element = document.getElementById("table_body");
-        if ((element!=null) && (document.getElementById("title").innerHTML == message.type)){
+        if ((element!=null) && (document.getElementById("title-up").innerText == message.type.toUpperCase())){
+            document.getElementById("no-classes").style.display = 'none';
             var btn = `<td><button type="button" id="button_no` + message.id + `" class="btn btn-success" style="border-radius: 100%;"  onclick="joinClass(this)" value="go">GO</button></td>`;
-            element.innerHTML += ` tr> 
+            element.innerHTML += ` <tr> 
             <td>` + message.local + ` </td>
             <td>` + message.starting + `</td>
             <td>` + message.ending + `</td> 
-            <td id="capacity`+ message.id + `">` + message.cap + `/`+ message.max + `</td>
+            <td id="capacity`+ message.id + `">` + message.caps + `/`+ message.max + `</td>
             ` + btn + `
             </tr>`;
         }

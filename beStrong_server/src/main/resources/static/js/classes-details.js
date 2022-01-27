@@ -111,10 +111,10 @@ function change_doc(data){
         }
         document.getElementById("desc").innerHTML = desc;
         document.getElementById("goals").innerHTML = goals;
-        document.getElementById("title").innerHTML = name.toUpperCase();
+        document.getElementById("title-up").innerText = name.toUpperCase();
         document.getElementById("duration").innerHTML = duration;
-        document.getElementById("type").innerHTML = type;
-        document.getElementById("intensity").innerHTML = inten;
+        document.getElementById("type").innerText = type;
+        document.getElementById("intensity").innerText = inten;
         document.getElementById("images").innerHTML = images;
 
 }
@@ -132,7 +132,7 @@ function show_data(data, info = null){
     var tab = ``;
     if (data.length == 0){
         tab+=`
-            <p>No avaiable classes at this moment...</p>
+            <p id="no-classes">No avaiable classes at this moment...</p>
         `;
     }
     else{
