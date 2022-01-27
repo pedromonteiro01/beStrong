@@ -25,16 +25,9 @@
                         <img id="chat-img" src="" alt="">
                         <div class="details">
                             <span>Web Chat</span>
-                            <p>Manuel António</p>
                         </div>
                     </header>
                     <div class="chat-box" id="chat-box">
-                        <!--<div class="chat incoming">
-                            <img src="img/pt.png" alt="">
-                            <div class="details">
-                                <p>Entao, tudo bem?</p>
-                            </div>
-                        </div>-->
                     </div>
                     <form class="typing-area" id="messageForm" name="messageForm" nameForm="messageForm">
                         <input type="text" id="message" placeholder="Type something here...">
@@ -48,13 +41,18 @@
             </button>
         </div>
         <script type="text/javascript">
-            function myFunction() {
-                var x = document.getElementById("wrapper");
-                if (x.style.display == "none") {
-                    x.style.display = "block";
-                    x.style.transition = "left 0ms ease-in-out 300ms, bottom 300ms ease-in-out, opacity 300ms ease-in-out"
+            function myFunction() { 
+                var logged_in = localStorage.getItem("loggedIn");
+                if (logged_in == 1) {
+                    var x = document.getElementById("wrapper");
+                    if (x.style.display == "none") {
+                        x.style.display = "block";
+                        x.style.transition = "left 0ms ease-in-out 300ms, bottom 300ms ease-in-out, opacity 300ms ease-in-out"
+                    } else {
+                        x.style.display = "none";
+                    }
                 } else {
-                    x.style.display = "none";
+                    alert("Must be logged in to chat!");
                 }
             }
         </script>

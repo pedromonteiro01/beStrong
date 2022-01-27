@@ -14,12 +14,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/entry");
+        config.enableSimpleBroker("/entry", "/topic");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         System.out.println("ENTREI");
-        registry.addEndpoint("/gymEntries").withSockJS();
+        registry.addEndpoint("/gymEntries", "/javatechie").withSockJS();
     }
 } 
