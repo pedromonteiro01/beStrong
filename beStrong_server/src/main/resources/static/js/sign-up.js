@@ -10,7 +10,7 @@ async function sendData(url, email1, password1, user1, phone1, weight1, height1)
     },
     body: JSON.stringify({email: email1, password: password1, phone: phone1, weight: weight1, height: height1, name: user1}),
     });
-    console.log(response);
+    var data1 = await response.json();
     if (response["status"]==422){
         window.alert("Username or email already exists!");
         return false;
@@ -19,6 +19,7 @@ async function sendData(url, email1, password1, user1, phone1, weight1, height1)
         window.alert("Account created successfully!");
 
         // after sign up stay logged in
+        localStorage.setItem("Id", data1.id);
         localStorage.setItem("loggedIn", 1);
         localStorage.setItem("isTrainer", 0);
         localStorage.setItem("Email", email1);

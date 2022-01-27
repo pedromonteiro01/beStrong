@@ -41,7 +41,7 @@ public class ClientController {
         return clientService.getClients();
     }
 
-    @PostMapping
+    @PostMapping( produces = "application/json")
     public Client createClient(@Valid @RequestBody Client client, HttpServletRequest request) throws UnprocessableEntityException, Exception{
         Optional<Client> comp = clientService.checkClientByEmail(client.getEmail());
         if (comp.isPresent()) {
