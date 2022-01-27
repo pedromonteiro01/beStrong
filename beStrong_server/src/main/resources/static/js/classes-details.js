@@ -226,12 +226,12 @@ if(localStorage.getItem("loggedIn") == 1 ){
     console.log(enlistedClasses);
 }
 
-//getData(url2, url1);
+getData(url2, url1);
 
 //const promiseOfSomeData = fetch("some.json").then(r=>r.json()).then(data => {
 //    console.log('in async');
 //    return data;
 //});
-window.onload = async () => {
-    await getData(url2, url1);
-};
+//window.onload = async () => {
+//    await getData(url2, url1);
+//};
