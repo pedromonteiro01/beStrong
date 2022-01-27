@@ -1,5 +1,5 @@
-//urlBase = "http://172.18.0.9:8081";
-urlBase = "http://deti-engsoft-11.ua.pt:8081";
+urlBase = "http://172.18.0.9:8081";
+//urlBase = "http://deti-engsoft-11.ua.pt:8081";
 
 async function getData(url){
     const response = await fetch(url);

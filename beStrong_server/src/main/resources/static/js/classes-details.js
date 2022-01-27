@@ -1,5 +1,5 @@
-//urlBase = "http://172.18.0.9:8081";
-urlBase = "http://deti-engsoft-11.ua.pt:8081";
+urlBase = "http://172.18.0.9:8081";
+//urlBase = "http://deti-engsoft-11.ua.pt:8081";
 
 async function getData(url1, url2){
     const response1 = await fetch(url1);
@@ -111,10 +111,10 @@ function change_doc(data){
         }
         document.getElementById("desc").innerHTML = desc;
         document.getElementById("goals").innerHTML = goals;
-        document.getElementById("title").innerHTML = name.toUpperCase();
+        document.getElementById("title-up").innerText = name.toUpperCase();
         document.getElementById("duration").innerHTML = duration;
-        document.getElementById("type").innerHTML = type;
-        document.getElementById("intensity").innerHTML = inten;
+        document.getElementById("type").innerText = type;
+        document.getElementById("intensity").innerText = inten;
         document.getElementById("images").innerHTML = images;
 
 }
@@ -132,7 +132,7 @@ function show_data(data, info = null){
     var tab = ``;
     if (data.length == 0){
         tab+=`
-            <p>No avaiable classes at this moment...</p>
+            <p id="no-classes">No avaiable classes at this moment...</p>
         `;
     }
     else{
@@ -162,7 +162,7 @@ function show_data(data, info = null){
             <td>${cls.local} </td>
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
-            <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
+            <td id="capacity`+ cls.id + `">${cls.currentCapacity}/${cls.maxCapacity}</td>
             ` + btn + `
             </tr>`;
 
@@ -199,7 +199,7 @@ function joinClass(button){
     else{
         window.location.href = "sign-in.html";
     }
-    document.location.reload(true);
+    //document.location.reload(true);
 }
 
 
