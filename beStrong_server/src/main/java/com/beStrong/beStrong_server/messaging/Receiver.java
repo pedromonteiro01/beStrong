@@ -18,7 +18,7 @@ public class Receiver {
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
-    public static int num_entries = 20;
+    public static int num_entries = 35;
 
     @Autowired
     private FitnessClassRepository fitnessClassRepository;

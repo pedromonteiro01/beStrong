@@ -19,7 +19,7 @@ function onError(error) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-    document.getElementById("occupation").innerHTML = "Occupation " + message;
+    document.getElementById("occupation").innerHTML = "Occupancy: " + message;
     console.log("abc");
     console.log("message: ", message);
 } 
