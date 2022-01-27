@@ -19,23 +19,7 @@ Resources:
 - Report: https://github.com/pedromonteiro01/beStrong/blob/main/reports/report.pdf
 
 ## How to run locally
-First you need to run maven commands to generate the jar. the first command to run is to enter the right directory
-```
-cd beStrong_server/
-```
-And then delete the last jar:
-```
-mvn clean
-```
-Finally, this one will generate a new one
-```
-mvn package
-```
-After that you just have to go back to the previous directory
-```
-cd ..
-```
-And run the script that will start dockers
+To run the project locally just run the script that will start all dockers
 ```
 ./run.sh
 ```
