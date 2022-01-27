@@ -7,7 +7,6 @@ Example of some tasks during development
 Chatting between client and trainer
 * client<br>
  ![Client Chat](prints/chat_client.png)
-<br>
 
 * trainer<br>
  ![Trainer Chat](prints/chat_trainer.png)
@@ -29,7 +28,7 @@ Enroll for the class (all these updates are done in real time)
 ![Class](prints/class-in.png)
 <br>
 
-Add a new class (available for trainers)
+Add a new class (available only for trainers)
 ![Add New Class](prints/add-class.png)
 <br>
 
