@@ -40,7 +40,7 @@ After adding the class, the class appears in the list
 ![Display New Class](prints/display-class.png)
 <br>
 
-Edit an existing class <br>
+Edit an existing class (after clicking manage button) <br>
 ![Edit Class](prints/edit-class-form.png)
 <br>
 
