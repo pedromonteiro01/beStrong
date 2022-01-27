@@ -9,6 +9,7 @@ import com.beStrong.beStrong_server.service.TrainerService;
 
 import org.hibernate.id.IntegralDataTypeHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class Handler{
     private TrainerService trainerService;
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private SimpMessagingTemplate template;
 
     @Async
     public String handle(Map<String, Object> message) {
@@ -53,6 +56,7 @@ public class Handler{
                         Integer.parseInt(message.getOrDefault("max_capacity", 30).toString())
                 );
                 fitnessClassService.saveFitnessClass(fitnessClass);
+                this.template.convertAndSend("/entry/num", "{\"id\": \"" + fitnessClass.getId() +"\", \"local\": \"" + fitnessClass.getLocal() + "\", \"starting\": \"" + fitnessClass.getStarting() + "\",\"ending\": \"" + fitnessClass.getEnding() + "\", \"caps\": \"" + fitnessClass.getCurrentCapacity() + "\", \"max\": \"" + fitnessClass.getMaxCapacity() + "\", \"type\": \"" + fitnessClass.getType() + "\"}");
                 ret = "New fitness class added " + fitnessClass;
                 break;
 
