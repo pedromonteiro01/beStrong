@@ -1,7 +1,6 @@
 package com.beStrong.beStrong_server.service;
 
 import com.beStrong.beStrong_server.model.Client;
-import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

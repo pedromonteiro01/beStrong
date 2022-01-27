@@ -14,9 +14,6 @@ async function connect2() {
     console.log(username);
 
     if(username) {
-        //usernamePage.classList.add('hidden');
-        //chatPage.classList.remove('hidden');
-        
         var socket = new SockJS('/javatechie');
         stompClient = Stomp.over(socket);
 
@@ -26,11 +23,6 @@ async function connect2() {
 
 function onConnected2() {
     stompClient.subscribe('/topic/public', onMessageReceived2);
-
-    //stompClient.send("/app/chat.register",
-     //   {},
-     //   JSON.stringify({sender: username, type: 'JOIN'})
-    //)
 }
 
 function onError(error) {

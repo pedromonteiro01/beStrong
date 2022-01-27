@@ -38,9 +38,6 @@ async function getEnlistedClasses(url, data){
         }})
         .then(response => response.json())
         .then(data => (enlistedClasses = data));
-    //var data3 = await response3.json();
-    //console.log(response3);
-    //return data3;
     console.log(enlistedClasses);
 }
 
@@ -227,11 +224,3 @@ if(localStorage.getItem("loggedIn") == 1 ){
 }
 
 getData(url2, url1);
-
-//const promiseOfSomeData = fetch("some.json").then(r=>r.json()).then(data => {
-//    console.log('in async');
-//    return data;
-//});
-//window.onload = async () => {
-//    await getData(url2, url1);
-//};

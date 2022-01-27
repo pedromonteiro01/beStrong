@@ -1,13 +1,10 @@
 package com.beStrong.beStrong_server.messaging;
 
-import com.beStrong.beStrong_server.model.Client;
 import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.model.Trainer;
-import com.beStrong.beStrong_server.service.ClientService;
 import com.beStrong.beStrong_server.service.FitnessClassService;
 import com.beStrong.beStrong_server.service.TrainerService;
 
-import org.hibernate.id.IntegralDataTypeHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
@@ -24,8 +21,7 @@ public class Handler{
     private FitnessClassService fitnessClassService;
     @Autowired
     private TrainerService trainerService;
-    @Autowired
-    private ClientService clientService;
+    
     @Autowired
     private SimpMessagingTemplate template;
 
@@ -33,7 +29,6 @@ public class Handler{
     public String handle(Map<String, Object> message) {
         String ret;
         FitnessClass fitnessClass;
-        Client client;
         Trainer trainer;
 
         switch(message.get("header").toString()) {

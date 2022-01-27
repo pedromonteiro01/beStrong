@@ -1,8 +1,5 @@
 package com.beStrong.beStrong_server.messaging;
 
-import com.beStrong.beStrong_server.repository.ClientRepository;
-import com.beStrong.beStrong_server.repository.FitnessClassRepository;
-import com.beStrong.beStrong_server.repository.TrainerRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +18,6 @@ public class Receiver {
     public static int num_entries = 35;
     public static String payload= "";
 
-    @Autowired
-    private FitnessClassRepository fitnessClassRepository;
-    @Autowired
-    private TrainerRepository trainerRepository;
-    @Autowired
-    private ClientRepository clientRepository;
     @Autowired
     private Handler handler;
     @Autowired

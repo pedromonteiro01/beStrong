@@ -13,15 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.beStrong.beStrong_server.model.*;
-import com.beStrong.beStrong_server.repository.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/trainers")
 public class TrainerController {
-    
-    @Autowired
-    private ClientRepository clientRepository;
 
     @Autowired
     private TrainerService trainerService;

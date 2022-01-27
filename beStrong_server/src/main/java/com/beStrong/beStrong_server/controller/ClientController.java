@@ -2,7 +2,6 @@ package com.beStrong.beStrong_server.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -18,11 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.beStrong.beStrong_server.exception.UnprocessableEntityException;
 import com.beStrong.beStrong_server.model.Client;
-import com.beStrong.beStrong_server.model.Trainer;
-import com.beStrong.beStrong_server.model.User;
 import com.beStrong.beStrong_server.service.ClientService;
-import com.beStrong.beStrong_server.service.TrainerService;
-import com.beStrong.beStrong_server.repository.*;
 
 @RestController
 @CrossOrigin
@@ -31,9 +26,6 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
-
-    @Autowired
-    private TrainerService trainerService;
 
     @GetMapping
     @ResponseBody

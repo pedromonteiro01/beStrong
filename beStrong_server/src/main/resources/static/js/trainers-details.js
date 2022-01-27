@@ -129,14 +129,6 @@ function show_data(data){
         var btn ;
         for (let i = 0; i < data.length; i++) {
             let cls = data[i];
-            
-
-            //if( cls.id == localStorage.getItem("Id")){
-            //    btn = `<td><button type="button" id="class_no` + cls.id + `\" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" style="border-radius: 100%;" onclick="setClassId(this)"><i class="fas fa-pencil-alt"></i></i></button></td>`;
-            //}
-            //else{
-            //    btn = "";
-            //}
 
             tab += `<tr> 
             <td>${cls.local} </td>
