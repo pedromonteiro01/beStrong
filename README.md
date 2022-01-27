@@ -6,7 +6,7 @@ Project Abstract:
     - managing entries
     - listing available classes
     - chat with PT’s and also
-    - make payments.
+    - enroll for a class
 
 Project Team:
 - 97484: [Pedro Monteiro](https://github.com/pedromonteiro01) - DevOps
