@@ -44,7 +44,7 @@ function onMessageReceived2(payload) {
     if (message.type === 'CHAT'){
         //console.log("chat message incoming");
         var img = '';
-        if (localStorage.getItem("isTrainer") == 1) {
+        if (localStorage.getItem("isTrainer") == 0) {
             //console.log("im trainer");
             img = 'img/pt.png';
         } else {
