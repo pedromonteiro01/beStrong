@@ -27,11 +27,9 @@
       <div class="cover">
         <div class="cover-text">
           <h1>You probably haven&rsquo;t heard of us.</h1>
-          <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-            molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-            numquam blanditiis harum quisquam eius sed odit fugiat iusto.
+          <p class="lead">Welcome to beStrong!
           </p>
-          <button type="button" class="btn-started">Let's get started</button>
+          <button type="button" class="btn-started" onclick="redirectIndex()">Let's get started</button>
         </div>
       </div>
       <script
@@ -39,5 +37,10 @@
       <script
       src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
         <script type="text/javascript" src="js/data.js"></script>
+        <script>
+          function redirectIndex() {
+            window.location.href = "classes.html";
+          }
+        </script>
   </body>
 </html>
