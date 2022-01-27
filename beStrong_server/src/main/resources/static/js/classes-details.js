@@ -1,5 +1,5 @@
-//urlBase = "http://172.18.0.9:8081";
-urlBase = "http://deti-engsoft-11.ua.pt:8081";
+urlBase = "http://172.18.0.9:8081";
+//urlBase = "http://deti-engsoft-11.ua.pt:8081";
 
 async function getData(url1, url2){
     const response1 = await fetch(url1);
@@ -162,7 +162,7 @@ function show_data(data, info = null){
             <td>${cls.local} </td>
             <td>${cls.starting}</td>
             <td>${cls.ending}</td> 
-            <td>${cls.currentCapacity}/${cls.maxCapacity}</td>
+            <td id="capacity`+ cls.id + `">${cls.currentCapacity}/${cls.maxCapacity}</td>
             ` + btn + `
             </tr>`;
 
@@ -199,7 +199,7 @@ function joinClass(button){
     else{
         window.location.href = "sign-in.html";
     }
-    document.location.reload(true);
+    //document.location.reload(true);
 }
 
 

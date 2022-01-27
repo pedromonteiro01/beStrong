@@ -19,7 +19,16 @@ function onError(error) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-    document.getElementById("occupation").innerHTML = "Occupancy: " + message;
-    console.log("abc");
     console.log("message: ", message);
+    if (message.hasOwnProperty("cap")){
+        var id = "capacity" + message.id;
+        var element = document.getElementById(id);
+        if (element!=null){
+            element.innerHTML = message.cap + "/" + message.max; 
+        }
+    }
+    else{
+        document.getElementById("occupation").innerHTML = "Occupancy: " + message.num_entries;
+        console.log("abc");
+    }
 } 

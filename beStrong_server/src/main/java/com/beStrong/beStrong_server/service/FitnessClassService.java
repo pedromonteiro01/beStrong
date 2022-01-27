@@ -5,6 +5,7 @@ import com.beStrong.beStrong_server.model.Trainer;
 import com.beStrong.beStrong_server.model.FitnessClass;
 import com.beStrong.beStrong_server.repository.FitnessClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public class FitnessClassService{
     private FitnessClassRepository fitnessClassRepository;
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private SimpMessagingTemplate template;
 
     public FitnessClass saveFitnessClass(FitnessClass fitnessClass) {
         return fitnessClassRepository.save(fitnessClass);
@@ -85,6 +88,8 @@ public class FitnessClassService{
         System.out.println(client.getFitnessClasses());
         fitnessClassRepository.save(fitnessClass);
 
+        this.template.convertAndSend("/entry/num", "{\"cap\": \"" + fitnessClass.getCurrentCapacity() +"\", \"id\": \"" + fitnessClass.getId() + "\", \"max\": \"" + fitnessClass.getMaxCapacity() + "\"}");
+
         return "Reservation made for class " + class_id + " by client " + client_id;
     }
 
@@ -109,6 +114,8 @@ public class FitnessClassService{
         client.removeReservation(fitnessClass);
 
         fitnessClassRepository.save(fitnessClass);
+
+        this.template.convertAndSend("/entry/num", "{\"cap\": \"" + fitnessClass.getCurrentCapacity() +"\", \"id\": \"" + fitnessClass.getId() + "\", \"max\": \"" + fitnessClass.getMaxCapacity() + "\"}");
 
         return "Reservation canceled for class " + class_id + " by client " + client_id;
     }

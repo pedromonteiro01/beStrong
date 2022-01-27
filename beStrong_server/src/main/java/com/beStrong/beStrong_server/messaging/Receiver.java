@@ -19,6 +19,7 @@ public class Receiver {
     private final CountDownLatch latch = new CountDownLatch(1);
 
     public static int num_entries = 35;
+    public static String payload= "";
 
     @Autowired
     private FitnessClassRepository fitnessClassRepository;
@@ -47,8 +48,9 @@ public class Receiver {
 
         if (num_entries<0)
             num_entries = 0;
+        payload = "{\"num_entries\": " + num_entries + "}";
 
-        this.template.convertAndSend("/entry/num", num_entries);
+        this.template.convertAndSend("/entry/num", payload);
 
         this.handler.handle(m);
 
