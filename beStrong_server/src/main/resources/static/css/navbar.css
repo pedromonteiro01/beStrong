@@ -17,6 +17,14 @@
   width: 100%;
 }
 
+#occupation {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 15px;
+  margin-left: 1.2rem; 
+  color: white;
+  font-weight: bold;
+}
+
 #navbar-container {
   display: flex;
   justify-content: center;
@@ -96,7 +104,7 @@ transform: rotate(25deg);
   margin-right: 0;
   padding: 0;
   position: absolute;
-  font-size: 15px;
+  font-size: 12px;
   top: 25%;
 }
 

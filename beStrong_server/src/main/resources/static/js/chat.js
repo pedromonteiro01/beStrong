@@ -1,11 +1,16 @@
 'user strict';
 
 var stompClient = null;
+var stompclient2 = null;
 var username = localStorage.getItem("Username");
 var messageForm = document.querySelector('#messageForm');
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-function connect() {
+async function connect2() {
+    await sleep(2000);
     console.log(username);
 
     if(username) {
@@ -15,12 +20,12 @@ function connect() {
         var socket = new SockJS('/javatechie');
         stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, onConnected, onError);
+        stompClient.connect({}, onConnected2, onError);
     }
 }
 
-function onConnected() {
-    stompClient.subscribe('/topic/public', onMessageReceived);
+function onConnected2() {
+    stompClient.subscribe('/topic/public', onMessageReceived2);
 
     //stompClient.send("/app/chat.register",
      //   {},
@@ -32,7 +37,7 @@ function onError(error) {
     window.alert('Could not connect to WebSocket server. Please refresh this page to try again!');
 }
 
-function onMessageReceived(payload) {
+function onMessageReceived2(payload) {
     var message = JSON.parse(payload.body);
     //console.log(message);
 
@@ -72,7 +77,7 @@ function onMessageReceived(payload) {
     }
 }
 
-function send() {
+function send2() {
     var messageInput = document.querySelector('#message');
     var messageContent = messageInput.value.trim();
 

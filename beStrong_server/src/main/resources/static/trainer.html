@@ -26,7 +26,7 @@
     </script>
     <script src="js/trainers-details.js"></script>
 </head>
-<body id="body">
+<body id="body" onload="connect()">
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -210,5 +210,10 @@
         alert("Alert...");
       }
     </script>
+     <script
+     src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+     <script
+     src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+       <script type="text/javascript" src="js/data.js"></script>
 </body>
 </html>

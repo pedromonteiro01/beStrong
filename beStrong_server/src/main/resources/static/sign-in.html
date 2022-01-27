@@ -25,7 +25,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.8.0/sha512.min.js"></script>
     <script src="js/sign-up.js"></script>
 </head>
-<body>
+<body onload="connect()">
     <div id="includedContent"></div>
     <h1 id="title">Monthly Payment</h1>
     <div>
@@ -148,5 +148,10 @@
     </div>
 </div>
 <div id="includedContent2"></div>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+      <script type="text/javascript" src="js/data.js"></script>
 </body>
 </html>
