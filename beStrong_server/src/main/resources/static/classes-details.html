@@ -26,9 +26,7 @@
         var log = localStorage.getItem("loggedIn");
         var isTrainer = localStorage.getItem("isTrainer");
 
-        if (log == 1){
-          document.getElementById("try_button").style.display = "none";
-        }
+
     </script> 
     <script src="js/classes-details.js"></script>
 </head>
@@ -151,6 +149,10 @@
         //else{
         //  window.location.href = "#classes-table";
         //}
+      }
+
+      if (log == 1){
+          document.getElementById("try_button").style.display = "none";
       }
     </script>
         <script
