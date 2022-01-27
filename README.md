@@ -39,3 +39,6 @@ Can be found [here](https://app.swaggerhub.com/apis-docs/tiagomrm/beStrong/0.1)
 |------------|------------|-----------|
 | candreuzzi3@howstuffworks.com   | JeqHeCGK9WQs       | Client    |
 | wimpettp@g.co      | 1MgLuwygcpb       | Trainer   |
+
+## Examples
+Some examples can be found inside the [examples folder](https://github.com/pedromonteiro01/beStrong/tree/main/examples)
