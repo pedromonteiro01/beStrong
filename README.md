@@ -42,7 +42,7 @@ And run the script that will start dockers
 The project will be accessible at [172.18.0.9:8081](http://172.18.0.9:8081)
 
 ## Deployment
-We also deployed the project on a VM provided by teacher.
+We also deployed the project on a VM provided by teacher. <br>
 It's available at [deti-engsoft-11.ua.pt:8081/](http://deti-engsoft-11.ua.pt:8081/)
 
 ## API Documentation
